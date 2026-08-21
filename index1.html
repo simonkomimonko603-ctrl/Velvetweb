@@ -39,7 +39,7 @@
 </head>
 <body class="bg-brand-dark text-brand-cream antialiased selection:bg-brand-gold selection:text-brand-dark min-h-screen flex flex-col">
 
-    <!-- UPOZORNENIE: NENI PRIPOJENy FIREBASE -->
+    <!-- UPOZORNENIE: NENI PRIPOJENY FIREBASE -->
     <div id="firebase-warning-banner" class="hidden fixed top-0 left-0 right-0 z-50 bg-red-600 text-white font-bold text-center py-2 text-xs uppercase tracking-widest shadow-lg">
         <i class="fa-solid fa-triangle-exclamation mr-2"></i> Neni Pripojeny Firebase! (Zadajte reálne údaje do firebaseConfig)
     </div>
@@ -185,21 +185,21 @@
         </div>
     </div>
 
-    <!-- MODÁLNE OKNO: Admin PIN -->
+    <!-- MODÁLNE OKNO: Admin PIN (Opravené - bez zátvorky s číslom) -->
     <div id="adminPinModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="bg-brand-dark border border-brand-gold max-w-sm w-full p-8 rounded-2xl relative shadow-2xl text-center">
             <button onclick="window.closeModal('adminPinModal')" class="absolute top-4 right-4 text-brand-cream/60 hover:text-brand-cream"><i class="fa-solid fa-xmark text-xl"></i></button>
             <div class="w-12 h-12 bg-brand-gold/10 border border-brand-gold text-brand-gold rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fa-solid fa-lock"></i>
             </div>
-            <h3 class="font-serif text-2xl mb-2 text-brand-cream">Administrácia Systému</h3>
-            <p class="text-xs text-brand-cream/60 mb-6">Zadajte bezpečnostný PIN (030413)</p>
+            <h3 class="font-serif text-2xl mb-2 text-brand-cream">Administrácia Systém</h3>
+            <p class="text-xs text-brand-cream/60 mb-6">Zadajte bezpečnostný PIN pre prístup</p>
             <input type="password" id="admin-pin-input" maxlength="6" class="w-full text-center tracking-[0.5em] text-2xl bg-brand-dark/50 border border-brand-gold/40 rounded px-4 py-3 text-brand-gold focus:border-brand-gold outline-none mb-4" placeholder="••••••">
             <button id="verify-pin-btn" class="w-full bg-brand-gold text-brand-dark py-3 text-xs uppercase tracking-widest font-bold hover:bg-brand-cream transition rounded">Overiť PIN</button>
         </div>
     </div>
 
-    <!-- MODÁLNE OKNO: Admin Dashboard (Priama správa produktov, cien a skladu) -->
+    <!-- MODÁLNE OKNO: Admin Dashboard -->
     <div id="adminDashboardModal" class="fixed inset-0 z-50 bg-brand-dark hidden flex flex-col overflow-y-auto p-6 md:p-12">
         <div class="max-w-6xl mx-auto w-full">
             <div class="flex justify-between items-center border-b border-brand-gold/30 pb-6 mb-8">
@@ -249,17 +249,11 @@
                 <!-- Priama správa a editácia produktov, cien a skladu -->
                 <div class="lg:col-span-2 bg-white/5 border border-brand-gold/20 p-6 rounded-xl flex flex-col">
                     <h3 class="font-serif text-2xl mb-2 text-brand-gold">Priama úprava produktov, cien & skladu</h3>
-                    <p class="text-xs text-brand-cream/60 mb-4">Zmeny sa po kliknutí na „Uložiť zmeny“ ihned zapíšu do Firestore databázy a prejavia sa v celom systéme.</p>
+                    <p class="text-xs text-brand-cream/60 mb-4">Zmeny sa po kliknutí na „Uložiť“ ihneď zapíšu do Firestore databázy a prejavia sa v POS, KDS aj na webe.</p>
                     <div id="admin-product-management-list" class="space-y-4 overflow-y-auto max-h-[500px] pr-2 flex-grow">
                         <p class="text-xs text-brand-cream/50">Načítavam produkty z databázy...</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Nastavenia systému -->
-            <div class="bg-white/5 border border-brand-gold/20 p-6 rounded-xl">
-                <h3 class="font-serif text-2xl mb-2 text-brand-gold">Nastavenia systému (Toggle)</h3>
-                <div id="settings-50-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs"></div>
             </div>
         </div>
     </div>
@@ -357,44 +351,11 @@
                 window.closeModal('adminPinModal');
                 document.getElementById('admin-pin-input').value = '';
                 window.openModal('adminDashboardModal');
-                render50Settings();
                 renderAdminProductManagement();
             } else {
                 alert('Nesprávny bezpečnostný PIN!');
             }
         });
-
-        function render50Settings() {
-            const container = document.getElementById('settings-50-grid');
-            if (!container || container.children.length > 0) return;
-            const settingsList = [
-                "Názov kiosku v záhlaví", "Režim prevádzky (Ostrý/Demo)", "Predvolené číslo stola", "Manuálna zmena stola", "Rýchla voľba kategórií",
-                "Zobrazenie cien s DPH", "Primárna mena (EUR)", "Predvolený jazyk", "Interval obnovy ponuky", "Šetrič obrazovky / Neaktivita",
-                "Minimálna hodnota objednávky", "Max. počet kusov na položku", "Poznámka k položke (Extra)", "Povinná poznámka košíka", "Zvuková odozva objednávky",
-                "Zobraziť čas prípravy", "Vyčistiť košík po odoslaní", "Zobraziť tlačidlo obsluhy", "Časový zámok volania obsluhy", "Modálna ďakovná obrazovka",
-                "Skryť vypredané položky", "Značka 'Vypredané' na karte", "Počiatočné zobrazenie sortimentu", "Veľkość mriežky produktov", "Detail produktu po kliknutí",
-                "Pomer strán obrázkov", "Zoom efekt pri prejdení", "Ikonky v kategóriách", "Farebný motiv (Brand Theme)", "Typografia (Font Family)",
-                "Aktivovať Splash Screen", "Časovač návratu na úvod", "Promo banner noviniek", "Happy Hours časové zľavy", "Animovaný prechod na menu",
-                "Automatické odpočítat. skladu", "Upozornenie nízky sklad", "Blokovať nákup pri 0 ks", "Sledovanie skladu (ZAP/VYP)", "Denná uzávierka tržieb"
-            ];
-            let html = '';
-            settingsList.forEach((name, idx) => {
-                html += `
-                    <div class="bg-brand-dark/60 border border-brand-gold/20 p-3 rounded flex flex-col justify-between">
-                        <span class="text-brand-gold font-mono text-[10px]">PARAM #${idx + 1}</span>
-                        <span class="font-medium text-brand-cream mt-1 mb-3">${name}</span>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] text-brand-cream/60 uppercase">Stav:</span>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" checked class="sr-only peer">
-                                <div class="w-9 h-5 bg-brand-dark border border-brand-gold/40 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-brand-gold after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-gold/20"></div>
-                            </label>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
 
         const dropZone = document.getElementById('drop-zone');
         if (dropZone) {
@@ -422,7 +383,7 @@
             const image = document.getElementById('adm-p-img').value || 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600&auto=format&fit=crop';
             
             const variations = [
-                { id: 'v1', name: 'Štandardná verzia', price: price, stock: stock, isAlcohol: false, image: image }
+                { id: 'v1', name: 'Základná verzia', price: price, stock: stock, isAlcohol: false, image: image }
             ];
 
             try {
@@ -436,6 +397,7 @@
             }
         });
 
+        // Vykreslenie pre správu produktov, cien produktov a skladu pre POS/KDS
         function renderAdminProductManagement() {
             const listContainer = document.getElementById('admin-product-management-list');
             if (!listContainer) return;
@@ -448,46 +410,60 @@
             let html = '';
             allProducts.forEach(prod => {
                 const vars = prod.variations || [];
+                const mainPrice = vars.length > 0 ? vars[0].price : 0;
+                const mainStock = vars.length > 0 && vars[0].stock !== undefined ? vars[0].stock : 50;
+
                 html += `
                     <div class="bg-brand-dark border border-brand-gold/30 p-4 rounded-xl text-xs space-y-3">
-                        <div class="flex items-center justify-between border-b border-brand-gold/20 pb-2">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-brand-gold/20 pb-3 gap-2">
                             <div>
-                                <span class="font-bold text-brand-cream text-base font-serif">${prod.name}</span>
-                                <span class="text-[10px] text-brand-gold block uppercase tracking-wider">Kategória: ${prod.category}</span>
+                                <input type="text" id="adm_p_name_${prod.id}" value="${prod.name}" class="font-bold text-brand-cream text-base font-serif bg-brand-dark/60 border border-brand-gold/30 rounded px-2 py-1 w-full">
+                                <span class="text-[10px] text-brand-gold block uppercase tracking-wider mt-1">Kategória: ${prod.category}</span>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <button onclick="window.addVariationToProduct('${prod.id}')" class="bg-brand-gold text-brand-dark px-2.5 py-1.5 rounded font-bold hover:bg-brand-cream transition">+ Variácia</button>
-                                <button onclick="window.deleteProduct('${prod.id}')" class="bg-red-500/20 text-red-400 px-2.5 py-1.5 rounded hover:bg-red-500 hover:text-white transition">Zmazať produkt</button>
+                                <button onclick="window.saveMainProduct('${prod.id}')" class="bg-brand-gold text-brand-dark px-3 py-1.5 rounded font-bold hover:bg-brand-cream transition">Uložiť hlavné</button>
+                                <button onclick="window.deleteProduct('${prod.id}')" class="bg-red-500/20 text-red-400 px-2.5 py-1.5 rounded hover:bg-red-500 hover:text-white transition">Zmazať</button>
                             </div>
                         </div>
-                        <div class="space-y-2">
+
+                        <!-- Rýchla úprava základnej ceny a skladu priamo pre POS/KDS -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-brand-dark/50 p-3 rounded border border-brand-gold/10">
+                            <div>
+                                <label class="text-[10px] text-brand-cream/50 uppercase block mb-1">Základná cena produktu (€)</label>
+                                <input type="number" step="0.01" id="adm_main_price_${prod.id}" value="${mainPrice}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1.5 text-brand-gold font-bold">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-brand-cream/50 uppercase block mb-1">Základný sklad (ks)</label>
+                                <input type="number" id="adm_main_stock_${prod.id}" value="${mainStock}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1.5 text-brand-cream font-bold">
+                            </div>
+                        </div>
+
+                        <!-- Pokročilé variácie ak existujú -->
+                        <div class="space-y-2 pt-2">
+                            <span class="text-[10px] text-brand-gold uppercase tracking-wider block font-bold">Pokročilé variácie produktu:</span>
                 `;
                 
                 vars.forEach((v, idx) => {
                     const currentStock = v.stock !== undefined ? v.stock : 50;
                     html += `
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-center bg-brand-dark/50 p-2.5 rounded border border-brand-gold/10">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-center bg-brand-dark/80 p-2.5 rounded border border-brand-gold/10">
                             <div class="md:col-span-4">
-                                <label class="text-[10px] text-brand-cream/50 uppercase block">Názvový variant</label>
-                                <input type="text" id="adm_v_name_${prod.id}_${idx}" value="${v.name}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1 text-brand-cream font-medium">
+                                <input type="text" id="adm_v_name_${prod.id}_${idx}" value="${v.name}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1 text-brand-cream">
                             </div>
                             <div class="md:col-span-2">
-                                <label class="text-[10px] text-brand-cream/50 uppercase block">Cena (€)</label>
                                 <input type="number" step="0.01" id="adm_v_price_${prod.id}_${idx}" value="${v.price}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1 text-brand-gold font-bold">
                             </div>
                             <div class="md:col-span-2">
-                                <label class="text-[10px] text-brand-cream/50 uppercase block">Sklad (ks)</label>
                                 <input type="number" id="adm_v_stock_${prod.id}_${idx}" value="${currentStock}" class="w-full bg-brand-dark border border-brand-gold/30 rounded px-2 py-1 text-brand-cream font-bold">
                             </div>
-                            <div class="md:col-span-2 flex items-center pt-3">
+                            <div class="md:col-span-2 flex items-center">
                                 <label class="flex items-center space-x-1 cursor-pointer">
                                     <input type="checkbox" id="adm_v_alco_${prod.id}_${idx}" ${v.isAlcohol ? 'checked' : ''} class="rounded bg-brand-dark border-brand-gold text-brand-gold">
                                     <span class="text-[10px] text-amber-400 font-bold">Alko 18+</span>
                                 </label>
                             </div>
-                            <div class="md:col-span-2 flex items-center justify-end space-x-1 pt-2">
-                                <button onclick="window.saveVariationInline('${prod.id}', ${idx})" class="bg-brand-gold text-brand-dark px-2.5 py-1.5 rounded font-bold hover:bg-brand-cream transition w-full">Uložiť</button>
-                                ${vars.length > 1 ? `<button onclick="window.deleteVariation('${prod.id}', ${idx})" class="text-red-400 p-1 hover:text-red-300" title="Zmazať variáciu">✕</button>` : ''}
+                            <div class="md:col-span-2 flex items-center justify-end space-x-1">
+                                <button onclick="window.saveVariationInline('${prod.id}', ${idx})" class="bg-brand-gold/20 text-brand-gold border border-brand-gold/40 px-2 py-1 rounded font-bold hover:bg-brand-gold hover:text-brand-dark transition w-full">Uložiť</button>
                             </div>
                         </div>
                     `;
@@ -497,6 +473,32 @@
             });
             listContainer.innerHTML = html;
         }
+
+        // Uložiť hlavný názov, cenu a sklad celého produktu naraz pre POS/KDS
+        window.saveMainProduct = async function(prodId) {
+            const prod = allProducts.find(p => p.id === prodId);
+            if (!prod) return;
+
+            const newName = document.getElementById(`adm_p_name_${prodId}`).value;
+            const newPrice = parseFloat(document.getElementById(`adm_main_price_${prodId}`).value) || 0;
+            const newStock = parseInt(document.getElementById(`adm_main_stock_${prodId}`).value) || 0;
+
+            let updatedVars = prod.variations || [];
+            if (updatedVars.length > 0) {
+                updatedVars[0].price = newPrice;
+                updatedVars[0].stock = newStock;
+            } else {
+                updatedVars = [{ id: 'v1', name: 'Základná verzia', price: newPrice, stock: newStock, isAlcohol: false, image: prod.image }];
+            }
+
+            try {
+                await updateDoc(doc(db, "products", prodId), { name: newName, variations: updatedVars });
+                alert('Produkt, cena a sklad boli úspešne aktualizované pre POS a KDS!');
+            } catch (e) {
+                console.error(e);
+                alert('Chyba pri ukladaní do databázy.');
+            }
+        };
 
         window.saveVariationInline = async function(prodId, varIdx) {
             const prod = allProducts.find(p => p.id === prodId);
@@ -517,49 +519,10 @@
 
             try {
                 await updateDoc(doc(db, "products", prodId), { variations: prod.variations });
-                alert('Zmeny pre cenu a sklad boli úspešne uložené do databázy!');
+                alert('Variácia bola úspešne uložená do databázy!');
             } catch (e) {
                 console.error(e);
-                alert('Chyba pri ukladaní do databázy.');
-            }
-        };
-
-        window.addVariationToProduct = async function(prodId) {
-            const prod = allProducts.find(p => p.id === prodId);
-            if (!prod) return;
-
-            const vName = prompt("Názov novej variácie:");
-            if (!vName) return;
-            const vPrice = parseFloat(prompt("Cena variácie (€):", "7.00")) || 5.00;
-            const vStock = parseInt(prompt("Sklad variácie (ks):", "50")) || 50;
-            const vIsAlcohol = confirm("Vyžaduje vek 18+ (Alkohol)?");
-
-            const newVars = [...(prod.variations || []), {
-                id: 'v_' + Date.now(),
-                name: vName,
-                price: vPrice,
-                stock: vStock,
-                isAlcohol: vIsAlcohol,
-                image: prod.image
-            }];
-
-            try {
-                await updateDoc(doc(db, "products", prodId), { variations: newVars });
-                alert('Variácia pridaná!');
-            } catch(e) { console.error(e); }
-        };
-
-        window.deleteVariation = async function(prodId, varIdx) {
-            const prod = allProducts.find(p => p.id === prodId);
-            if (!prod || prod.variations.length <= 1) {
-                alert('Produkt musí mať aspoň jednu variáciu.');
-                return;
-            }
-            if (confirm("Naozaj vymazať túto variáciu?")) {
-                prod.variations.splice(varIdx, 1);
-                try {
-                    await updateDoc(doc(db, "products", prodId), { variations: prod.variations });
-                } catch(e) { console.error(e); }
+                alert('Chyba pri ukladaní.');
             }
         };
 
@@ -631,7 +594,6 @@
 
                 el.innerHTML = `
                     <div>
-                        <!-- FIX: Kontajner s fixnou výškou, flexboxom a object-fit pre bezchybné zobrazenie obrázkov bez deformácie -->
                         <div class="h-52 w-full overflow-hidden relative bg-brand-dark/80 flex items-center justify-center">
                             <img src="${displayImage}" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700 ${isSoldOut ? 'opacity-40 grayscale' : ''}">
                             <span class="absolute bottom-3 right-3 bg-brand-dark/95 backdrop-blur-sm text-brand-gold px-3 py-1 text-xs font-bold border border-brand-gold/40 rounded shadow-md">
@@ -780,11 +742,13 @@
             document.getElementById('cart-total').innerText = total.toFixed(2) + ' €';
         }
 
+        // Integrácia s POS & KDS: zápis objednávok priamo do kolekcie orders s priradením ku stolom
         document.getElementById('submit-order-btn').addEventListener('click', async () => {
             if (cart.length === 0) { alert('Košík je prázdny.'); return; }
             try {
                 await addDoc(collection(db, "orders"), {
-                    table: `Stôl ${currentTable} (QR)`,
+                    table: `Stôl ${currentTable}`,
+                    tableNumber: currentTable,
                     items: cart,
                     total: cart.reduce((sum, i) => sum + (i.price * i.qty), 0),
                     status: "new",
@@ -806,10 +770,9 @@
                     }
                 }
 
-                alert('Objednávka odoslaná a sklad aktualizovaný!');
+                alert('Objednávka bola úspešne odoslaná na bar a priradená k vášmu stolu!');
                 cart = [];
                 updateCartUI();
-                window.openModal('cartModal'); // Necháme košík otvorený, resp. zavrieme
                 window.closeModal('cartModal');
             } catch (e) {
                 console.error(e);
@@ -821,6 +784,7 @@
             try {
                 await addDoc(collection(db, "serviceCalls"), {
                     location: `Stôl ${currentTable} (QR Volanie)`,
+                    tableNumber: currentTable,
                     status: "pending",
                     createdAt: serverTimestamp()
                 });
