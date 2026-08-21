@@ -39,7 +39,7 @@
 </head>
 <body class="bg-brand-dark text-brand-cream antialiased selection:bg-brand-gold selection:text-brand-dark min-h-screen flex flex-col">
 
-    <!-- UPOZORNENIE: NENI PRIPOJENY FIREBASE -->
+    <!-- UPOZORNENIE: NENI PRIPOJENy FIREBASE -->
     <div id="firebase-warning-banner" class="hidden fixed top-0 left-0 right-0 z-50 bg-red-600 text-white font-bold text-center py-2 text-xs uppercase tracking-widest shadow-lg">
         <i class="fa-solid fa-triangle-exclamation mr-2"></i> Neni Pripojeny Firebase! (Zadajte reálne údaje do firebaseConfig)
     </div>
@@ -270,13 +270,13 @@
         import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
-  apiKey: "AIzaSyCdSyggAlKW-q_pDMwFvLKV1mKYmANA7U",
-  authDomain: "apexpos-ef6a0.firebaseapp.com",
-  projectId: "apexpos-ef6a0",
-  storageBucket: "apexpos-ef6a0.appspot.com",
-  messagingSenderId: "123316014625",
-  appId: "1:123316014625:web:edd04e73ba2d1d524f5d60"
-};
+          apiKey: "AIzaSyCdSyggAlKW-q_pDMwFvLKV1mKYmANA7U",
+          authDomain: "apexpos-ef6a0.firebaseapp.com",
+          projectId: "apexpos-ef6a0",
+          storageBucket: "apexpos-ef6a0.appspot.com",
+          messagingSenderId: "123316014625",
+          appId: "1:123316014625:web:edd04e73ba2d1d524f5d60"
+        };
 
         if (firebaseConfig.apiKey === "YOUR_API_KEY" || !firebaseConfig.apiKey) {
             document.getElementById('firebase-warning-banner').classList.remove('hidden');
@@ -436,7 +436,6 @@
             }
         });
 
-        // Vykreslenie interaktívneho zoznamu pre úpravu cien a skladu priamo z admina
         function renderAdminProductManagement() {
             const listContainer = document.getElementById('admin-product-management-list');
             if (!listContainer) return;
@@ -499,7 +498,6 @@
             listContainer.innerHTML = html;
         }
 
-        // Priame uloženie upravených hodnôt ceny, skladu a názvu z admin formulára
         window.saveVariationInline = async function(prodId, varIdx) {
             const prod = allProducts.find(p => p.id === prodId);
             if (!prod || !prod.variations[varIdx]) return;
@@ -625,7 +623,7 @@
                 const vars = item.variations || [];
                 const firstVar = vars[0] || {};
                 const displayPrice = firstVar.price || 0;
-                const displayImage = firstVar.image || item.image;
+                const displayImage = firstVar.image || item.image || 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600&auto=format&fit=crop';
                 const isSoldOut = vars.length > 0 && vars.every(v => v.stock !== undefined && v.stock <= 0);
 
                 const el = document.createElement('div');
@@ -633,12 +631,13 @@
 
                 el.innerHTML = `
                     <div>
-                        <div class="h-48 overflow-hidden relative bg-brand-dark/40">
-                            <img src="${displayImage}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ${isSoldOut ? 'opacity-40 grayscale' : ''}">
-                            <span class="absolute bottom-3 right-3 bg-brand-dark/95 backdrop-blur-sm text-brand-gold px-3 py-1 text-xs font-bold border border-brand-gold/40 rounded">
+                        <!-- FIX: Kontajner s fixnou výškou, flexboxom a object-fit pre bezchybné zobrazenie obrázkov bez deformácie -->
+                        <div class="h-52 w-full overflow-hidden relative bg-brand-dark/80 flex items-center justify-center">
+                            <img src="${displayImage}" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700 ${isSoldOut ? 'opacity-40 grayscale' : ''}">
+                            <span class="absolute bottom-3 right-3 bg-brand-dark/95 backdrop-blur-sm text-brand-gold px-3 py-1 text-xs font-bold border border-brand-gold/40 rounded shadow-md">
                                 ${vars.length > 1 ? 'od ' : ''}${Number(displayPrice).toFixed(2)} €
                             </span>
-                            ${vars.length > 1 ? '<span class="absolute top-3 left-3 bg-brand-gold text-brand-dark px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded">Dostupné variácie</span>' : ''}
+                            ${vars.length > 1 ? '<span class="absolute top-3 left-3 bg-brand-gold text-brand-dark px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded shadow">Dostupné variácie</span>' : ''}
                             ${isSoldOut ? '<span class="absolute inset-0 flex items-center justify-center bg-black/60 text-brand-gold font-serif text-xl tracking-widest uppercase font-bold">Vypredané</span>' : ''}
                         </div>
                         <div class="p-6">
@@ -677,7 +676,7 @@
                     html += `
                         <div class="bg-brand-dark border border-brand-gold/30 p-4 rounded-xl flex items-center justify-between">
                             <div class="flex items-center space-x-3">
-                                <img src="${v.image || product.image}" class="w-12 h-12 object-cover rounded-lg border border-brand-gold/20">
+                                <img src="${v.image || product.image}" class="w-12 h-12 object-cover rounded-lg border border-brand-gold/25">
                                 <div>
                                     <h5 class="font-serif text-base text-brand-cream">${v.name} ${v.isAlcohol ? '<span class="text-amber-400 text-xs font-sans">(18+ Alko)</span>' : '<span class="text-emerald-400 text-xs font-sans">(Nealko)</span>'}</h5>
                                     <span class="text-xs text-brand-gold font-bold">${Number(v.price).toFixed(2)} € | Sklad: ${stockVal} ks</span>
@@ -810,6 +809,7 @@
                 alert('Objednávka odoslaná a sklad aktualizovaný!');
                 cart = [];
                 updateCartUI();
+                window.openModal('cartModal'); // Necháme košík otvorený, resp. zavrieme
                 window.closeModal('cartModal');
             } catch (e) {
                 console.error(e);
