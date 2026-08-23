@@ -36,18 +36,15 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col justify-between relative" onclick="handleGlobalClick(event)">
 
-    <!-- SKRYTÝ REKLAMNÝ MODAL (Aktivuje sa kliknutím kamkoľvek na webe) -->
+    <!-- SKRYTÝ REKLAMNÝ MODAL -->
     <div id="adOverlay" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-xl max-w-2xl w-full p-6 relative shadow-2xl border border-kaskady-gold">
             <button onclick="closeAd(event)" class="absolute top-4 right-4 bg-kaskady-dark text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition">✕</button>
             <span class="text-[10px] uppercase font-bold text-kaskady-gold tracking-widest block mb-2">Exkluzívny partnerský program & reklama</span>
             <h3 class="font-serif font-bold text-xl mb-4 text-kaskady-dark">Aktuálna ponuka pre hostí Velvet Nights</h3>
             
-            <!-- Obsah reklamy (YouTube alebo Lokálny súbor/Video) -->
             <div id="adContainer" class="w-full h-80 bg-black rounded overflow-hidden flex items-center justify-center relative">
-                <!-- V predvolenom stave YouTube video -->
                 <iframe id="adYoutube" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="Ad" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- Alternatíva pre nahratý súbor z priečinka -->
                 <video id="adVideoFile" class="w-full h-full object-cover hidden" controls autoplay></video>
             </div>
             <div class="mt-4 flex justify-between items-center text-xs text-gray-500">
@@ -395,10 +392,10 @@
                         </div>
                     </div>
 
-                    <!-- ZÁLOŽKA 5: Správa reklám (NOVÉ) -->
+                    <!-- ZÁLOŽKA 5: Správa reklám -->
                     <div id="admin-tab-ads" class="admin-tab space-y-4">
                         <h3 class="font-serif font-bold text-base mb-2 text-kaskady-gold">Nastavenie skrytých reklám (YouTube / Priečinok)</h3>
-                        <p class="text-gray-600">Tu môžete nastaviť, čo sa zobrazí návštevníkovi po kliknutí kamkoľvek na stránku.</p>
+                        <p class="text-gray-600">Tu môžete nastaviť, čo sa zobrazí návštevníkovi po kliknutí na prázdne miesto stránky.</p>
                         <div class="grid grid-cols-1 gap-4">
                             <div>
                                 <label class="font-bold">Typ zdroja reklamy:</label>
@@ -466,12 +463,23 @@
         let logoClicks = 0;
         let adReadyToClose = false;
 
-        // Globálny klik pre skryté reklamy (ak užívateľ nekliká priamo v admine alebo na ovládacie prvky modalu)
+        // Opravená funkcia: Reklama sa spustí IBA ak kliknete do prázdneho miesta (nie na tlačidlá, odkazy, inputy, menu atď.)
         function handleGlobalClick(event) {
-            // Ak užívateľ klikol v administrácii, na tlačidlá alebo je modal už zobrazený, reklamu nespúšťame znova hneď
             if (document.getElementById('page-admin').classList.contains('active')) return;
             if (document.getElementById('adOverlay').classList.contains('hidden') === false) return;
-            if (event.target.closest('button') || event.target.closest('input') || event.target.closest('select') || event.target.closest('a')) return;
+            
+            // Kontrola: Ak klik smeruje na interaktívny element, nič nerobíme
+            if (
+                event.target.closest('button') || 
+                event.target.closest('a') || 
+                event.target.closest('input') || 
+                event.target.closest('select') || 
+                event.target.closest('textarea') ||
+                event.target.closest('#chatBox') ||
+                event.target.closest('nav')
+            ) {
+                return;
+            }
 
             triggerAdDisplay();
         }
@@ -480,7 +488,6 @@
             const overlay = document.getElementById('adOverlay');
             overlay.classList.remove('hidden');
 
-            // Časovač na 5 sekúnd pre tlačidlo zatvorenia
             let timeLeft = 5;
             const timerEl = document.getElementById('adTimer');
             const closeBtn = document.getElementById('closeAdBtn');
@@ -507,7 +514,6 @@
         function closeAd(event) {
             if (!adReadyToClose && !event.target.classList.contains('hover:bg-red-600')) return;
             document.getElementById('adOverlay').classList.add('hidden');
-            // Zastavenie prehrávania videa pri zatvorení
             const ytFrame = document.getElementById('adYoutube');
             ytFrame.src = ytFrame.src; 
             const localVideo = document.getElementById('adVideoFile');
@@ -559,14 +565,12 @@
         }
 
         function saveAdminSettings() {
-            // Aplikovanie zmien priamo na webstránku z administrácie
             document.getElementById('brandTitle').textContent = document.getElementById('admHotelName').value.toUpperCase();
             document.getElementById('headerPhone').textContent = document.getElementById('admPhone').value;
             document.getElementById('headerEmail').textContent = document.getElementById('admEmail').value;
             document.getElementById('contactPhoneDisplay').textContent = 'Telefón: ' + document.getElementById('admPhone').value;
             document.getElementById('contactEmailDisplay').textContent = 'Email: ' + document.getElementById('admEmail').value;
             
-            // Nastavenie reklamy
             const adType = document.getElementById('adSourceType').value;
             if (adType === 'youtube') {
                 let ytUrl = document.getElementById('adminYoutubeUrl').value;
