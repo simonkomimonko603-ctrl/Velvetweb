@@ -34,9 +34,9 @@
         .admin-tab.active { display: block; }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col justify-between relative" onclick="handleGlobalClick(event)">
+<body class="antialiased min-h-screen flex flex-col justify-between relative">
 
-    <!-- SKRYTÝ REKLAMNÝ MODAL -->
+    <!-- SKRYTÝ REKLAMNÝ MODAL (spustí sa po 10 kliknutiach na ocenenie) -->
     <div id="adOverlay" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-xl max-w-2xl w-full p-6 relative shadow-2xl border border-kaskady-gold">
             <button onclick="closeAd(event)" class="absolute top-4 right-4 bg-kaskady-dark text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition">✕</button>
@@ -105,10 +105,13 @@
                     <span class="text-xs uppercase tracking-[0.3em] text-kaskady-gold mb-4 block font-semibold">2. príroda & butikový minimalizmus</span>
                     <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">Miesto, kam sa radi vraciate.</h1>
                     <p class="text-base md:text-lg font-light text-kaskady-sand mb-8">Váš exkluzívny únik v Kalnej nad Hronom pre biznis i dokonalý relax.</p>
+                    
+                    <!-- OCENENIA S POČÍTADLOM NA REKLAMU (Kliknite sem 10-krát) -->
                     <div class="flex justify-center gap-4 flex-wrap mb-8">
-                        <span class="bg-white/10 border border-white/20 text-xs px-4 py-2 rounded uppercase tracking-wider">🏆 Najzamestnávateľ roka 2025</span>
-                        <span class="bg-white/10 border border-white/20 text-xs px-4 py-2 rounded uppercase tracking-wider">⭐ Hviezda HORECA 2024</span>
+                        <span onclick="handleAwardClick(event)" class="bg-white/10 border border-white/20 text-xs px-4 py-2 rounded uppercase tracking-wider cursor-pointer hover:bg-white/20 transition select-none">🏆 Najzamestnávateľ roka 2025</span>
+                        <span onclick="handleAwardClick(event)" class="bg-white/10 border border-white/20 text-xs px-4 py-2 rounded uppercase tracking-wider cursor-pointer hover:bg-white/20 transition select-none">⭐ Hviezda HORECA 2024</span>
                     </div>
+
                     <button onclick="switchPage('booking')" class="bg-kaskady-cream text-kaskady-dark px-8 py-3.5 text-xs font-bold uppercase tracking-widest hover:bg-kaskady-gold transition">Vybrať pobyt</button>
                 </div>
             </section>
@@ -121,7 +124,7 @@
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">O nás</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Harmónia luxusu a pokoja</h2>
                     <p class="text-kaskady-dark/80 leading-relaxed text-base max-w-3xl mx-auto">
-                        Velvet Nights v Kalnej nad Hronom prepája moderný architektonický štýl s prírodným prostredím. Ponúkame špičkový servis, izby s kozmetikou Rituals a individuálny prístup ku každému hosťovi[cite: 1].
+                        Velvet Nights v Kalnej nad Hronom prepája moderný architektonický štýl s prírodným prostredím. Ponúkame špičkový servis, izby s kozmetikou Rituals a individuálny prístup ku každému hosťovi.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -147,7 +150,7 @@
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">Ubytovanie</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Izby & Apartmány</h2>
-                    <p class="text-kaskady-dark/70 text-xs">Komfortne zariadené priestory s dôrazom na detail, kozmetikou Rituals a barom na dosah ruky[cite: 1].</p>
+                    <p class="text-kaskady-dark/70 text-xs">Komfortne zariadené priestory s dôrazom na detail, kozmetikou Rituals a barom na dosah ruky.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white rounded overflow-hidden shadow-sm border border-kaskady-sand flex flex-col">
@@ -181,7 +184,7 @@
                         <div class="p-6 flex flex-col flex-grow justify-between">
                             <div>
                                 <h3 class="font-serif font-bold text-xl mb-2">Executive Family</h3>
-                                <p class="text-xs text-kaskady-dark/70 mb-4">Ideálna voľba pre rodiny s deťmi a dlhší pobyt.</p>
+                                <p class="text-xs text-kaskady-dark/70 mb-4">Ideálna voľba pre rodiny s deťmi a dlhший pobyt.</p>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-kaskady-sand">
                                 <span class="text-base font-bold price" data-eur="250" data-usd="275" id="priceFamily">250 € / noc</span>
@@ -257,12 +260,12 @@
                 <div class="text-center mb-16">
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">Firemné akcie & Svadby</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Eventy na mieru</h2>
-                    <p class="text-kaskady-dark/70 text-xs max-w-xl mx-auto">Usporiadajte nezabudnuteľnú svadbu, rodinnú oslavu alebo firemný teambuilding v exkluzívnom prostredí hotela Velvet Nights[cite: 1].</p>
+                    <p class="text-kaskady-dark/70 text-xs max-w-xl mx-auto">Usporiadajte nezabudnuteľnú svadbu, rodinnú oslavu alebo firemný teambuilding v exkluzívnom prostredí hotela Velvet Nights.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded border border-kaskady-sand">
                         <h3 class="font-serif font-bold text-xl mb-3 text-kaskady-dark">Svadby snov</h3>
-                        <p class="text-xs text-kaskady-dark/70 leading-relaxed mb-4">Romantické priestory, svadobná výzdoba na kľúč, catering a kompletný servis pre váš veľký deň v Kalnej nad Hronom[cite: 1].</p>
+                        <p class="text-xs text-kaskady-dark/70 leading-relaxed mb-4">Romantické priestory, svadobná výzdoba na kľúč, catering a kompletný servis pre váš veľký deň v Kalnej nad Hronom.</p>
                         <span class="text-xs font-bold text-kaskady-gold uppercase" id="eventCapacityText">Kapacita: do 120 hostí</span>
                     </div>
                     <div class="bg-white p-8 rounded border border-kaskady-sand">
@@ -332,8 +335,8 @@
                 <div class="bg-white p-8 rounded-lg border border-kaskady-dark shadow-xl text-xs">
                     <div class="flex justify-between items-center mb-6 border-b pb-4">
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-red-600">Zabezpečená zóna (Kód: 030413)</span>[cite: 1]
-                            <h2 class="text-2xl font-serif font-bold">Veľký administračný panel hotela</h2>[cite: 1]
+                            <span class="text-[10px] uppercase font-bold text-red-600">Zabezpečená zóna (Kód: 030413)</span>
+                            <h2 class="text-2xl font-serif font-bold">Veľký administračný panel hotela</h2>
                         </div>
                         <button onclick="switchPage('home')" class="bg-kaskady-dark text-white px-4 py-2 uppercase font-bold">← Späť na web</button>
                     </div>
@@ -350,7 +353,7 @@
 
                     <!-- ZÁLOŽKA 1: Všeobecné -->
                     <div id="admin-tab-general" class="admin-tab active space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Základné parametre systému (1-4)</h3>[cite: 1]
+                        <h3 class="font-serif font-bold text-base mb-2">Základné parametre systému (1-4)</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>1. Názov hotela:</label><input type="text" id="admHotelName" value="Velvet Nights" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>2. Hlavný email:</label><input type="text" id="admEmail" value="velvetnightskalna@gmail.com" class="w-full border p-2 rounded mt-1"></div>
@@ -361,7 +364,7 @@
 
                     <!-- ZÁLOŽKA 2: Izby -->
                     <div id="admin-tab-rooms" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Správa izieb a cien (5-8)</h3>[cite: 1]
+                        <h3 class="font-serif font-bold text-base mb-2">Správa izieb a cien (5-8)</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>5. Cena Standard Comfort:</label><input type="text" id="admPriceStd" value="120 €" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>6. Cena Garden Suite:</label><input type="text" id="admPriceSuite" value="190 €" class="w-full border p-2 rounded mt-1"></div>
@@ -372,7 +375,7 @@
 
                     <!-- ZÁLOŽKA 3: Gastro -->
                     <div id="admin-tab-gastro" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Gastronómia & Bar (9-12)</h3>[cite: 1]
+                        <h3 class="font-serif font-bold text-base mb-2">Gastronómia & Bar (9-12)</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>9. Otváracie hodiny Simon's Bar:</label><input type="text" value="16:00 - 24:00" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>10. Cena Signature Koktailu:</label><input type="text" id="admCocktailPrice" value="9.50 €" class="w-full border p-2 rounded mt-1"></div>
@@ -383,7 +386,7 @@
 
                     <!-- ZÁLOŽKA 4: Wellness -->
                     <div id="admin-tab-wellness" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Wellness & Spa (13-16)</h3>[cite: 1]
+                        <h3 class="font-serif font-bold text-base mb-2">Wellness & Spa (13-16)</h3>
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>13. Otváracie hodiny bazéna:</label><input type="text" value="08:00 - 22:00" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>14. Teplota termálnej vody:</label><input type="text" value="36 °C" class="w-full border p-2 rounded mt-1"></div>
@@ -395,7 +398,7 @@
                     <!-- ZÁLOŽKA 5: Správa reklám -->
                     <div id="admin-tab-ads" class="admin-tab space-y-4">
                         <h3 class="font-serif font-bold text-base mb-2 text-kaskady-gold">Nastavenie skrytých reklám (YouTube / Priečinok)</h3>
-                        <p class="text-gray-600">Tu môžete nastaviť, čo sa zobrazí návštevníkovi po kliknutí na prázdne miesto stránky.</p>
+                        <p class="text-gray-600">Tu môžete nastaviť, čo sa zobrazí po 10. kliknutí na ocenenie na domovskej stránke.</p>
                         <div class="grid grid-cols-1 gap-4">
                             <div>
                                 <label class="font-bold">Typ zdroja reklamy:</label>
@@ -417,16 +420,16 @@
 
                     <!-- ZÁLOŽKA 6: Drag & Drop médiá -->
                     <div id="admin-tab-media" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Drag & Drop nahrávanie médií a súborov</h3>[cite: 1]
-                        <p class="text-gray-600">Presuňte sem súbory myšou alebo kliknite pre výber fotografií a dokumentov pre web[cite: 1]:</p>
+                        <h3 class="font-serif font-bold text-base mb-2">Drag & Drop nahrávanie médií a súborov</h3>
+                        <p class="text-gray-600">Presuňte sem súbory myšou alebo kliknite pre výber fotografií a dokumentov pre web:</p>
                         <div id="dropZone" class="border-2 border-dashed border-kaskady-dark p-12 text-center rounded bg-kaskady-cream/30 cursor-pointer hover:bg-kaskady-cream/60 transition">
-                            <p class="font-bold text-sm mb-1">Sem presuňte súbory (Drag & Drop)</p>[cite: 1]
-                            <p class="text-gray-500 text-[10px]">Podporované formáty: JPG, PNG, PDF, MP4</p>[cite: 1]
+                            <p class="font-bold text-sm mb-1">Sem presuňte súbory (Drag & Drop)</p>
+                            <p class="text-gray-500 text-[10px]">Podporované formáty: JPG, PNG, PDF, MP4</p>
                         </div>
                     </div>
 
                     <div class="mt-8 pt-4 border-t flex justify-end">
-                        <button onclick="saveAdminSettings()" class="bg-kaskady-gold text-kaskady-dark px-6 py-2.5 font-bold uppercase tracking-widest hover:bg-kaskady-dark hover:text-white transition">Uložiť všetky nastavenia</button>[cite: 1]
+                        <button onclick="saveAdminSettings()" class="bg-kaskady-gold text-kaskady-dark px-6 py-2.5 font-bold uppercase tracking-widest hover:bg-kaskady-dark hover:text-white transition">Uložiť všetky nastavenia</button>
                     </div>
                 </div>
             </section>
@@ -461,27 +464,16 @@
     <!-- Skripty -->
     <script>
         let logoClicks = 0;
+        let awardClicks = 0; // Počítadlo kliknutí na ocenenie
         let adReadyToClose = false;
 
-        // Opravená funkcia: Reklama sa spustí IBA ak kliknete do prázdneho miesta (nie na tlačidlá, odkazy, inputy, menu atď.)
-        function handleGlobalClick(event) {
-            if (document.getElementById('page-admin').classList.contains('active')) return;
-            if (document.getElementById('adOverlay').classList.contains('hidden') === false) return;
-            
-            // Kontrola: Ak klik smeruje na interaktívny element, nič nerobíme
-            if (
-                event.target.closest('button') || 
-                event.target.closest('a') || 
-                event.target.closest('input') || 
-                event.target.closest('select') || 
-                event.target.closest('textarea') ||
-                event.target.closest('#chatBox') ||
-                event.target.closest('nav')
-            ) {
-                return;
+        // Funkcija pre ocenenie: po 10 kliknutiach otvorí reklamu
+        function handleAwardClick(event) {
+            awardClicks++;
+            if (awardClicks >= 10) {
+                awardClicks = 0;
+                triggerAdDisplay();
             }
-
-            triggerAdDisplay();
         }
 
         function triggerAdDisplay() {
@@ -553,11 +545,11 @@
             logoClicks++;
             if (logoClicks >= 10) {
                 logoClicks = 0;
-                let code = prompt("Zadajte bezpečnostný kód pre nastavenia:");[cite: 1]
+                let code = prompt("Zadajte bezpečnostný kód pre nastavenia:");
                 if (code === "030413") {
                     switchPage('admin');
                 } else if (code !== null) {
-                    alert("Nesprávny kód!");[cite: 1]
+                    alert("Nesprávny kód!");
                 }
             } else {
                 switchPage('home');
@@ -585,7 +577,7 @@
                 document.getElementById('adYoutube').classList.add('hidden');
             }
 
-            alert('Všetky nastavenia a reklamy boli úspešne uložené a aplikované!');[cite: 1]
+            alert('Všetky nastavenia a reklamy boli úspešne uložené a aplikované!');
             switchPage('home');
         }
 
@@ -619,7 +611,7 @@
         }
 
         function changeLanguage() {
-            alert('Language switched (Demo)');[cite: 1]
+            alert('Language switched (Demo)');
         }
     </script>
 </body>
