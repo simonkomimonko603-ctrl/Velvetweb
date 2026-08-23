@@ -12,9 +12,9 @@
                 extend: {
                     colors: {
                         kaskady: {
-                            dark: '#1E332D',     /* Luxusná tmavozelená z inšpirácie */
+                            dark: '#1E332D',
                             green: '#2A4740',
-                            cream: '#EFECE6',    /* Krémové pozadie */
+                            cream: '#EFECE6',
                             sand: '#D9D3C7',
                             gold: '#C4A482'
                         }
@@ -34,15 +34,36 @@
         .admin-tab.active { display: block; }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col justify-between relative">
+<body class="antialiased min-h-screen flex flex-col justify-between relative" onclick="handleGlobalClick(event)">
+
+    <!-- SKRYTÝ REKLAMNÝ MODAL (Aktivuje sa kliknutím kamkoľvek na webe) -->
+    <div id="adOverlay" class="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full p-6 relative shadow-2xl border border-kaskady-gold">
+            <button onclick="closeAd(event)" class="absolute top-4 right-4 bg-kaskady-dark text-white w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-red-600 transition">✕</button>
+            <span class="text-[10px] uppercase font-bold text-kaskady-gold tracking-widest block mb-2">Exkluzívny partnerský program & reklama</span>
+            <h3 class="font-serif font-bold text-xl mb-4 text-kaskady-dark">Aktuálna ponuka pre hostí Velvet Nights</h3>
+            
+            <!-- Obsah reklamy (YouTube alebo Lokálny súbor/Video) -->
+            <div id="adContainer" class="w-full h-80 bg-black rounded overflow-hidden flex items-center justify-center relative">
+                <!-- V predvolenom stave YouTube video -->
+                <iframe id="adYoutube" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="Ad" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- Alternatíva pre nahratý súbor z priečinka -->
+                <video id="adVideoFile" class="w-full h-full object-cover hidden" controls autoplay></video>
+            </div>
+            <div class="mt-4 flex justify-between items-center text-xs text-gray-500">
+                <span id="adTimer">Reklamu je možné zatvoriť o 5 sekúnd...</span>
+                <button id="closeAdBtn" onclick="closeAd(event)" disabled class="bg-gray-300 text-gray-600 px-4 py-2 uppercase font-bold rounded cursor-not-allowed transition">Zatvoriť reklamu</button>
+            </div>
+        </div>
+    </div>
 
     <div>
         <!-- Horná lišta -->
         <header class="bg-kaskady-dark text-kaskady-cream text-xs py-2 px-6 flex justify-between items-center border-b border-white/10">
             <div class="flex items-center gap-4">
-                <span>+421 911 532 326</span>
+                <span id="headerPhone">+421 911 532 326</span>
                 <span>•</span>
-                <span>velvetnightskalna@gmail.com</span>
+                <span id="headerEmail">velvetnightskalna@gmail.com</span>
             </div>
             <div class="flex items-center gap-4">
                 <select id="langSwitch" onchange="changeLanguage()" class="bg-transparent border border-kaskady-sand/40 rounded px-2 py-0.5 text-xs text-kaskady-cream focus:outline-none cursor-pointer">
@@ -59,7 +80,7 @@
         <!-- Hlavná navigácia -->
         <nav class="sticky top-0 z-50 bg-kaskady-dark/95 backdrop-blur-md border-b border-white/15 text-kaskady-cream">
             <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-                <a href="#" onclick="handleLogoClick(event)" class="text-2xl font-serif font-bold tracking-widest select-none text-kaskady-cream">VELVET NIGHTS</a>
+                <a href="#" onclick="handleLogoClick(event)" class="text-2xl font-serif font-bold tracking-widest select-none text-kaskady-cream" id="brandTitle">VELVET NIGHTS</a>
                 
                 <div class="hidden xl:flex items-center gap-6 text-xs font-semibold uppercase tracking-widest">
                     <button onclick="switchPage('home')" class="nav-link hover:text-kaskady-gold transition">Domov</button>
@@ -103,7 +124,7 @@
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">O nás</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">Harmónia luxusu a pokoja</h2>
                     <p class="text-kaskady-dark/80 leading-relaxed text-base max-w-3xl mx-auto">
-                        Velvet Nights v Kalnej nad Hronom prepája moderný architektonický štýl s prírodným prostredím. Ponúkame špičkový servis, izby s kozmetikou Rituals a individuálny prístup ku každému hosťovi.
+                        Velvet Nights v Kalnej nad Hronom prepája moderný architektonický štýl s prírodným prostredím. Ponúkame špičkový servis, izby s kozmetikou Rituals a individuálny prístup ku každému hosťovi[cite: 1].
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -129,7 +150,7 @@
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">Ubytovanie</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Izby & Apartmány</h2>
-                    <p class="text-kaskady-dark/70 text-xs">Komfortne zariadené priestory s dôrazom na detail, kozmetikou Rituals a barom na dosah ruky.</p>
+                    <p class="text-kaskady-dark/70 text-xs">Komfortne zariadené priestory s dôrazom na detail, kozmetikou Rituals a barom na dosah ruky[cite: 1].</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white rounded overflow-hidden shadow-sm border border-kaskady-sand flex flex-col">
@@ -140,7 +161,7 @@
                                 <p class="text-xs text-kaskady-dark/70 mb-4">Útulná izba pre páry alebo biznis klientelu.</p>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-kaskady-sand">
-                                <span class="text-base font-bold price" data-eur="120" data-usd="130">120 € / noc</span>
+                                <span class="text-base font-bold price" data-eur="120" data-usd="130" id="priceStandard">120 € / noc</span>
                                 <button onclick="switchPage('booking')" class="text-[10px] uppercase font-bold tracking-widest bg-kaskady-dark text-white px-4 py-2 hover:bg-kaskady-gold transition">Rezervovať</button>
                             </div>
                         </div>
@@ -153,7 +174,7 @@
                                 <p class="text-xs text-kaskady-dark/70 mb-4">Priestranný apartmán s výhľadom na zeleň.</p>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-kaskady-sand">
-                                <span class="text-base font-bold price" data-eur="190" data-usd="210">190 € / noc</span>
+                                <span class="text-base font-bold price" data-eur="190" data-usd="210" id="priceSuite">190 € / noc</span>
                                 <button onclick="switchPage('booking')" class="text-[10px] uppercase font-bold tracking-widest bg-kaskady-dark text-white px-4 py-2 hover:bg-kaskady-gold transition">Rezervovať</button>
                             </div>
                         </div>
@@ -166,7 +187,7 @@
                                 <p class="text-xs text-kaskady-dark/70 mb-4">Ideálna voľba pre rodiny s deťmi a dlhší pobyt.</p>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-kaskady-sand">
-                                <span class="text-base font-bold price" data-eur="250" data-usd="275">250 € / noc</span>
+                                <span class="text-base font-bold price" data-eur="250" data-usd="275" id="priceFamily">250 € / noc</span>
                                 <button onclick="switchPage('booking')" class="text-[10px] uppercase font-bold tracking-widest bg-kaskady-dark text-white px-4 py-2 hover:bg-kaskady-gold transition">Rezervovať</button>
                             </div>
                         </div>
@@ -215,7 +236,7 @@
                     <div>
                         <h3 class="font-serif font-bold text-xl text-kaskady-dark mb-6 pb-2 border-b border-kaskady-sand">Simon's Bar Menu</h3>
                         <div class="space-y-4 text-xs">
-                            <div class="flex justify-between font-bold"><span>Velvet Night Signature Gin</span><span>9.50 €</span></div>
+                            <div class="flex justify-between font-bold"><span>Velvet Night Signature Gin</span><span id="menuCocktail1">9.50 €</span></div>
                             <div class="flex justify-between font-bold"><span>Kalna Sunset Cocktail</span><span>8.90 €</span></div>
                             <div class="flex justify-between font-bold"><span>Minimalist Old Fashioned</span><span>10.20 €</span></div>
                             <div class="flex justify-between font-bold"><span>Domáca bylinková limonáda</span><span>4.50 €</span></div>
@@ -233,19 +254,19 @@
             </section>
         </div>
 
-        <!-- 6. EVENTY (Nová karta v menu) -->
+        <!-- 6. EVENTY -->
         <div id="page-events" class="page-content">
             <section class="py-24 max-w-5xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">Firemné akcie & Svadby</span>
                     <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Eventy na mieru</h2>
-                    <p class="text-kaskady-dark/70 text-xs max-w-xl mx-auto">Usporiadajte nezabudnuteľnú svadbu, rodinnú oslavu alebo firemný teambuilding v exkluzívnom prostredí hotela Velvet Nights.</p>
+                    <p class="text-kaskady-dark/70 text-xs max-w-xl mx-auto">Usporiadajte nezabudnuteľnú svadbu, rodinnú oslavu alebo firemný teambuilding v exkluzívnom prostredí hotela Velvet Nights[cite: 1].</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded border border-kaskady-sand">
                         <h3 class="font-serif font-bold text-xl mb-3 text-kaskady-dark">Svadby snov</h3>
-                        <p class="text-xs text-kaskady-dark/70 leading-relaxed mb-4">Romantické priestory, svadobná výzdoba na kľúč, catering a kompletný servis pre váš veľký deň v Kalnej nad Hronom.</p>
-                        <span class="text-xs font-bold text-kaskady-gold uppercase">Kapacita: do 120 hostí</span>
+                        <p class="text-xs text-kaskady-dark/70 leading-relaxed mb-4">Romantické priestory, svadobná výzdoba na kľúč, catering a kompletný servis pre váš veľký deň v Kalnej nad Hronom[cite: 1].</p>
+                        <span class="text-xs font-bold text-kaskady-gold uppercase" id="eventCapacityText">Kapacita: do 120 hostí</span>
                     </div>
                     <div class="bg-white p-8 rounded border border-kaskady-sand">
                         <h3 class="font-serif font-bold text-xl mb-3 text-kaskady-dark">Biznis Konferencie & Akcie</h3>
@@ -275,8 +296,8 @@
                         <span class="text-xs uppercase tracking-[0.2em] text-kaskady-gold font-bold block mb-3">Spojte sa s nami</span>
                         <h2 class="text-3xl font-serif font-bold mb-6">Velvet Nights</h2>
                         <p class="text-xs text-kaskady-dark/80 mb-4">Kalná nad Hronom, Slovensko</p>
-                        <p class="text-xs text-kaskady-dark/80 mb-4">Telefón: +421 911 532 326</p>
-                        <p class="text-xs text-kaskady-dark/80">Email: velvetnightskalna@gmail.com</p>
+                        <p class="text-xs text-kaskady-dark/80 mb-4" id="contactPhoneDisplay">Telefón: +421 911 532 326</p>
+                        <p class="text-xs text-kaskady-dark/80" id="contactEmailDisplay">Email: velvetnightskalna@gmail.com</p>
                     </div>
                     <div class="bg-white p-8 rounded border border-kaskady-sand">
                         <h3 class="font-serif font-bold text-xl mb-4">Napíšte nám</h3>
@@ -299,23 +320,23 @@
                     <input type="date" class="w-full border p-3 rounded bg-kaskady-cream/50">
                     <input type="date" class="w-full border p-3 rounded bg-kaskady-cream/50">
                     <select class="w-full border p-3 rounded bg-kaskady-cream/50">
-                        <option>Standard Comfort - 120 €</option>
-                        <option>Garden Suite - 190 €</option>
-                        <option>Executive Family - 250 €</option>
+                        <option>Standard Comfort</option>
+                        <option>Garden Suite</option>
+                        <option>Executive Family</option>
                     </select>
                     <button onclick="alert('Rezervácia vytvorená!')" class="w-full bg-kaskady-dark text-white p-3 uppercase font-bold tracking-widest">Potvrdiť</button>
                 </div>
             </section>
         </div>
 
-        <!-- 10. ADMINISTRATÍVNE NASTAVENIA (Preklikávanie v záložkách + 20+ nastavení + Drag & Drop) -->
+        <!-- 10. ADMINISTRATÍVNY PANEL -->
         <div id="page-admin" class="page-content">
             <section class="py-16 max-w-6xl mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg border border-kaskady-dark shadow-xl text-xs">
                     <div class="flex justify-between items-center mb-6 border-b pb-4">
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-red-600">Zabezpečená zóna (Kód: 030413)</span>
-                            <h2 class="text-2xl font-serif font-bold">Veľký administračný panel hotela</h2>
+                            <span class="text-[10px] uppercase font-bold text-red-600">Zabezpečená zóna (Kód: 030413)</span>[cite: 1]
+                            <h2 class="text-2xl font-serif font-bold">Veľký administračný panel hotela</h2>[cite: 1]
                         </div>
                         <button onclick="switchPage('home')" class="bg-kaskady-dark text-white px-4 py-2 uppercase font-bold">← Späť na web</button>
                     </div>
@@ -323,41 +344,41 @@
                     <!-- Navigačné záložky v administrácii -->
                     <div class="flex gap-2 mb-6 border-b pb-4 overflow-x-auto">
                         <button onclick="switchAdminTab('general')" class="admin-nav-btn px-4 py-2 font-bold bg-kaskady-dark text-white rounded">1. Všeobecné</button>
-                        <button onclick="switchAdminTab('rooms')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">2. Izby & Kapacity</button>
+                        <button onclick="switchAdminTab('rooms')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">2. Izby & Ceny</button>
                         <button onclick="switchAdminTab('gastro')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">3. Gastro & Bar</button>
                         <button onclick="switchAdminTab('wellness')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">4. Wellness</button>
-                        <button onclick="switchAdminTab('events')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">5. Eventy</button>
+                        <button onclick="switchAdminTab('ads')" class="admin-nav-btn px-4 py-2 font-bold bg-kaskady-gold text-kaskady-dark rounded">⭐ Správa reklám</button>
                         <button onclick="switchAdminTab('media')" class="admin-nav-btn px-4 py-2 font-bold bg-gray-200 rounded">6. Drag & Drop médiá</button>
                     </div>
 
-                    <!-- ZÁLOŽKA 1: Všeobecné nastavenia -->
+                    <!-- ZÁLOŽKA 1: Všeobecné -->
                     <div id="admin-tab-general" class="admin-tab active space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Základné parametre systému (1-4)</h3>
+                        <h3 class="font-serif font-bold text-base mb-2">Základné parametre systému (1-4)</h3>[cite: 1]
                         <div class="grid grid-cols-2 gap-4">
-                            <div><label>1. Názov hotela:</label><input type="text" value="Velvet Nights" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>2. Hlavný email:</label><input type="text" value="velvetnightskalna@gmail.com" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>3. Telefónne číslo:</label><input type="text" value="+421 911 532 326" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>4. Hlavná mena:</label><select class="w-full border p-2 rounded mt-1"><option>EUR (€)</option><option>USD ($)</option></select></div>
+                            <div><label>1. Názov hotela:</label><input type="text" id="admHotelName" value="Velvet Nights" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>2. Hlavný email:</label><input type="text" id="admEmail" value="velvetnightskalna@gmail.com" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>3. Telefónne číslo:</label><input type="text" id="admPhone" value="+421 911 532 326" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>4. Hlavná mena:</label><select id="admCurrency" class="w-full border p-2 rounded mt-1"><option>EUR (€)</option><option>USD ($)</option></select></div>
                         </div>
                     </div>
 
                     <!-- ZÁLOŽKA 2: Izby -->
                     <div id="admin-tab-rooms" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Správa izieb a cien (5-8)</h3>
+                        <h3 class="font-serif font-bold text-base mb-2">Správa izieb a cien (5-8)</h3>[cite: 1]
                         <div class="grid grid-cols-2 gap-4">
-                            <div><label>5. Cena Standard Comfort:</label><input type="text" value="120 €" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>6. Cena Garden Suite:</label><input type="text" value="190 €" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>7. Cena Executive Family:</label><input type="text" value="250 €" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>5. Cena Standard Comfort:</label><input type="text" id="admPriceStd" value="120 €" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>6. Cena Garden Suite:</label><input type="text" id="admPriceSuite" value="190 €" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>7. Cena Executive Family:</label><input type="text" id="admPriceFam" value="250 €" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>8. Celková kapacita izieb:</label><input type="number" value="50" class="w-full border p-2 rounded mt-1"></div>
                         </div>
                     </div>
 
                     <!-- ZÁLOŽKA 3: Gastro -->
                     <div id="admin-tab-gastro" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Gastronómia & Bar (9-12)</h3>
+                        <h3 class="font-serif font-bold text-base mb-2">Gastronómia & Bar (9-12)</h3>[cite: 1]
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>9. Otváracie hodiny Simon's Bar:</label><input type="text" value="16:00 - 24:00" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>10. Cena Signature Koktailu:</label><input type="text" value="9.50 €" class="w-full border p-2 rounded mt-1"></div>
+                            <div><label>10. Cena Signature Koktailu:</label><input type="text" id="admCocktailPrice" value="9.50 €" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>11. Stav reštaurácie:</label><select class="w-full border p-2 rounded mt-1"><option>Otvorené</option><option>Zatvorené</option></select></div>
                             <div><label>12. Šéfkuchár:</label><input type="text" value="Chef Simon" class="w-full border p-2 rounded mt-1"></div>
                         </div>
@@ -365,7 +386,7 @@
 
                     <!-- ZÁLOŽKA 4: Wellness -->
                     <div id="admin-tab-wellness" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Wellness & Spa (13-16)</h3>
+                        <h3 class="font-serif font-bold text-base mb-2">Wellness & Spa (13-16)</h3>[cite: 1]
                         <div class="grid grid-cols-2 gap-4">
                             <div><label>13. Otváracie hodiny bazéna:</label><input type="text" value="08:00 - 22:00" class="w-full border p-2 rounded mt-1"></div>
                             <div><label>14. Teplota termálnej vody:</label><input type="text" value="36 °C" class="w-full border p-2 rounded mt-1"></div>
@@ -374,29 +395,41 @@
                         </div>
                     </div>
 
-                    <!-- ZÁLOŽKA 5: Eventy -->
-                    <div id="admin-tab-events" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Eventy a svadby (17-20)</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div><label>17. Maximálna kapacita svadieb:</label><input type="text" value="120 hostí" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>18. Správa firemných akcií:</label><select class="w-full border p-2 rounded mt-1"><option>Aktívne</option><option>Pozastavené</option></select></div>
-                            <div><label>19. Minimálny počet hostí pre event:</label><input type="text" value="10 osôb" class="w-full border p-2 rounded mt-1"></div>
-                            <div><label>20. Koordinátor eventov:</label><input type="text" value="Concierge Team" class="w-full border p-2 rounded mt-1"></div>
+                    <!-- ZÁLOŽKA 5: Správa reklám (NOVÉ) -->
+                    <div id="admin-tab-ads" class="admin-tab space-y-4">
+                        <h3 class="font-serif font-bold text-base mb-2 text-kaskady-gold">Nastavenie skrytých reklám (YouTube / Priečinok)</h3>
+                        <p class="text-gray-600">Tu môžete nastaviť, čo sa zobrazí návštevníkovi po kliknutí kamkoľvek na stránku.</p>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label class="font-bold">Typ zdroja reklamy:</label>
+                                <select id="adSourceType" onchange="toggleAdTypeInput()" class="w-full border p-2 rounded mt-1 bg-kaskady-cream/50">
+                                    <option value="youtube">YouTube video (Vložiť odkaz)</option>
+                                    <option value="local">Súbor z priečinka / Nahrané video</option>
+                                </select>
+                            </div>
+                            <div id="youtubeInputGroup">
+                                <label class="font-bold">YouTube URL adresa (Embed alebo štandardný link):</label>
+                                <input type="text" id="adminYoutubeUrl" value="https://www.youtube.com/embed/dQw4w9WgXcQ" class="w-full border p-2 rounded mt-1">
+                            </div>
+                            <div id="localInputGroup" class="hidden">
+                                <label class="font-bold">Názov súboru v priečinku alebo cesta (napr. reklama.mp4):</label>
+                                <input type="text" id="adminLocalVideoPath" placeholder="reklama.mp4" class="w-full border p-2 rounded mt-1">
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ZÁLOŽKA 6: Drag & Drop pre súbory -->
+                    <!-- ZÁLOŽKA 6: Drag & Drop médiá -->
                     <div id="admin-tab-media" class="admin-tab space-y-4">
-                        <h3 class="font-serif font-bold text-base mb-2">Drag & Drop nahrávanie médií a súborov</h3>
-                        <p class="text-gray-600">Presuňte sem súbory myšou alebo kliknite pre výber fotografií a dokumentov pre web:</p>
+                        <h3 class="font-serif font-bold text-base mb-2">Drag & Drop nahrávanie médií a súborov</h3>[cite: 1]
+                        <p class="text-gray-600">Presuňte sem súbory myšou alebo kliknite pre výber fotografií a dokumentov pre web[cite: 1]:</p>
                         <div id="dropZone" class="border-2 border-dashed border-kaskady-dark p-12 text-center rounded bg-kaskady-cream/30 cursor-pointer hover:bg-kaskady-cream/60 transition">
-                            <p class="font-bold text-sm mb-1">Sem presuňte súbory (Drag & Drop)</p>
-                            <p class="text-gray-500 text-[10px]">Podporované formáty: JPG, PNG, PDF</p>
+                            <p class="font-bold text-sm mb-1">Sem presuňte súbory (Drag & Drop)</p>[cite: 1]
+                            <p class="text-gray-500 text-[10px]">Podporované formáty: JPG, PNG, PDF, MP4</p>[cite: 1]
                         </div>
                     </div>
 
                     <div class="mt-8 pt-4 border-t flex justify-end">
-                        <button onclick="alert('Všetkých 20+ nastavení bolo úspešne uložených!')" class="bg-kaskady-gold text-kaskady-dark px-6 py-2.5 font-bold uppercase tracking-widest hover:bg-kaskady-dark hover:text-white transition">Uložiť všetky nastavenia</button>
+                        <button onclick="saveAdminSettings()" class="bg-kaskady-gold text-kaskady-dark px-6 py-2.5 font-bold uppercase tracking-widest hover:bg-kaskady-dark hover:text-white transition">Uložiť všetky nastavenia</button>[cite: 1]
                     </div>
                 </div>
             </section>
@@ -404,7 +437,7 @@
 
     </div>
 
-    <!-- Chatbot ikona (dole vpravo) -->
+    <!-- Chatbot ikona -->
     <div class="fixed bottom-6 right-6 z-50">
         <div id="chatBox" class="hidden mb-3 w-80 bg-white border border-kaskady-sand shadow-2xl rounded overflow-hidden text-xs">
             <div class="bg-kaskady-dark text-white p-3 flex justify-between items-center font-bold uppercase">
@@ -424,13 +457,73 @@
 
     <!-- Pätička -->
     <footer class="bg-kaskady-dark text-kaskady-cream py-12 px-6 border-t border-white/10 text-center text-xs">
-        <p class="mb-2">&copy; 2026 Velvet Nights Kalná nad Hronom. Všetky práva vyhradené.</p>
+        <p class="mb-2" id="footerText">&copy; 2026 Velvet Nights Kalná nad Hronom. Všetky práva vyhradené.</p>
         <p class="text-kaskady-sand/60">🏆 Najzamestnávateľ roka 2025 | ⭐ Hviezda HORECA 2024</p>
     </footer>
 
     <!-- Skripty -->
     <script>
         let logoClicks = 0;
+        let adReadyToClose = false;
+
+        // Globálny klik pre skryté reklamy (ak užívateľ nekliká priamo v admine alebo na ovládacie prvky modalu)
+        function handleGlobalClick(event) {
+            // Ak užívateľ klikol v administrácii, na tlačidlá alebo je modal už zobrazený, reklamu nespúšťame znova hneď
+            if (document.getElementById('page-admin').classList.contains('active')) return;
+            if (document.getElementById('adOverlay').classList.contains('hidden') === false) return;
+            if (event.target.closest('button') || event.target.closest('input') || event.target.closest('select') || event.target.closest('a')) return;
+
+            triggerAdDisplay();
+        }
+
+        function triggerAdDisplay() {
+            const overlay = document.getElementById('adOverlay');
+            overlay.classList.remove('hidden');
+
+            // Časovač na 5 sekúnd pre tlačidlo zatvorenia
+            let timeLeft = 5;
+            const timerEl = document.getElementById('adTimer');
+            const closeBtn = document.getElementById('closeAdBtn');
+            adReadyToClose = false;
+            closeBtn.disabled = true;
+            closeBtn.classList.add('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+            closeBtn.classList.remove('bg-kaskady-dark', 'text-white', 'hover:bg-red-600');
+
+            let countdown = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    timerEl.textContent = `Reklamu je možné zatvoriť o ${timeLeft} sekúnd...`;
+                } else {
+                    clearInterval(countdown);
+                    timerEl.textContent = "Reklamu môžete teraz zatvoriť.";
+                    closeBtn.disabled = false;
+                    closeBtn.classList.remove('bg-gray-300', 'text-gray-600', 'cursor-not-allowed');
+                    closeBtn.classList.add('bg-kaskady-dark', 'text-white', 'hover:bg-red-600');
+                    adReadyToClose = true;
+                }
+            }, 1000);
+        }
+
+        function closeAd(event) {
+            if (!adReadyToClose && !event.target.classList.contains('hover:bg-red-600')) return;
+            document.getElementById('adOverlay').classList.add('hidden');
+            // Zastavenie prehrávania videa pri zatvorení
+            const ytFrame = document.getElementById('adYoutube');
+            ytFrame.src = ytFrame.src; 
+            const localVideo = document.getElementById('adVideoFile');
+            localVideo.pause();
+        }
+
+        function toggleAdTypeInput() {
+            const type = document.getElementById('adSourceType').value;
+            if (type === 'youtube') {
+                document.getElementById('youtubeInputGroup').classList.remove('hidden');
+                document.getElementById('localInputGroup').classList.add('hidden');
+            } else {
+                document.getElementById('youtubeInputGroup').classList.add('hidden');
+                document.getElementById('localInputGroup').classList.remove('hidden');
+            }
+        }
 
         function switchPage(pageId) {
             document.querySelectorAll('.page-content').forEach(el => el.classList.remove('active'));
@@ -441,7 +534,7 @@
         function switchAdminTab(tabId) {
             document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.admin-nav-btn').forEach(btn => {
-                btn.classList.remove('bg-kaskady-dark', 'text-white');
+                btn.classList.remove('bg-kaskady-dark', 'text-white', 'bg-kaskady-gold');
                 btn.classList.add('bg-gray-200');
             });
             document.getElementById('admin-tab-' + tabId).classList.add('active');
@@ -454,15 +547,42 @@
             logoClicks++;
             if (logoClicks >= 10) {
                 logoClicks = 0;
-                let code = prompt("Zadajte bezpečnostný kód pre nastavenia:");
+                let code = prompt("Zadajte bezpečnostný kód pre nastavenia:");[cite: 1]
                 if (code === "030413") {
                     switchPage('admin');
                 } else if (code !== null) {
-                    alert("Nesprávny kód!");
+                    alert("Nesprávny kód!");[cite: 1]
                 }
             } else {
                 switchPage('home');
             }
+        }
+
+        function saveAdminSettings() {
+            // Aplikovanie zmien priamo na webstránku z administrácie
+            document.getElementById('brandTitle').textContent = document.getElementById('admHotelName').value.toUpperCase();
+            document.getElementById('headerPhone').textContent = document.getElementById('admPhone').value;
+            document.getElementById('headerEmail').textContent = document.getElementById('admEmail').value;
+            document.getElementById('contactPhoneDisplay').textContent = 'Telefón: ' + document.getElementById('admPhone').value;
+            document.getElementById('contactEmailDisplay').textContent = 'Email: ' + document.getElementById('admEmail').value;
+            
+            // Nastavenie reklamy
+            const adType = document.getElementById('adSourceType').value;
+            if (adType === 'youtube') {
+                let ytUrl = document.getElementById('adminYoutubeUrl').value;
+                document.getElementById('adYoutube').src = ytUrl;
+                document.getElementById('adYoutube').classList.remove('hidden');
+                document.getElementById('adVideoFile').classList.add('hidden');
+            } else {
+                let localPath = document.getElementById('adminLocalVideoPath').value;
+                const vid = document.getElementById('adVideoFile');
+                vid.src = localPath;
+                vid.classList.remove('hidden');
+                document.getElementById('adYoutube').classList.add('hidden');
+            }
+
+            alert('Všetky nastavenia a reklamy boli úspešne uložené a aplikované!');[cite: 1]
+            switchPage('home');
         }
 
         function toggleChat() {
@@ -495,7 +615,7 @@
         }
 
         function changeLanguage() {
-            alert('Language switched (Demo)');
+            alert('Language switched (Demo)');[cite: 1]
         }
     </script>
 </body>
