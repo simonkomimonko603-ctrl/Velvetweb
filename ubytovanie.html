@@ -33,32 +33,31 @@
 </head>
 <body class="bg-[#D8CEC4] text-velvetDark antialiased selection:bg-velvetGold selection:text-white">
 
-    <!-- HLAVNÉ MENU (NAVBAR) - OPRAVENÉ A PLNÉ FUNKČNÉ -->
+    <!-- HLAVNÉ MENU (SYMETRICKÉ) -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-3 items-center">
+            
+            <!-- Ľavá strana: Domov -->
+            <div class="flex justify-start">
                 <a href="index.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     <span>Domov</span>
                 </a>
-                <nav class="hidden md:flex space-x-6 text-xs uppercase tracking-widest text-white/80">
-                    <a href="pobyty.html" class="hover:text-white transition">Pobyty</a>
-                    <a href="wellness.html" class="hover:text-white transition">Wellness</a>
-                    <a href="gastronomia.html" class="hover:text-white transition">Gastronómia</a>
-                </nav>
             </div>
             
-            <!-- Logo smerujúce na index.html -->
+            <!-- Stred: Logo (vynútený presný stred cez grid) -->
             <div class="text-center">
-                <a href="index.html" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
+                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] text-white font-bold inline-block">VELVET NIGHTS</a>
                 <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
             </div>
 
-            <div class="flex items-center space-x-4">
+            <!-- Pravá strana: Kontakt -->
+            <div class="flex justify-end">
                 <a href="kontakty.html" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
                     Kontakt
                 </a>
             </div>
+
         </div>
     </header>
 
@@ -219,4 +218,4 @@
     </footer>
 
 </body>
-</html>S
+</html>
