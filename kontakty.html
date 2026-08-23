@@ -83,45 +83,81 @@
         <p class="text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</p>
     </footer>
 
-    <!-- AI CHATBOT WIDGET -->
-    <div class="fixed bottom-8 right-8 z-50">
-        <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition transform focus:outline-none border-2 border-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        </button>
-        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col transition-all">
-            <div class="bg-velvetDark text-white p-4 flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="font-serif text-sm font-semibold tracking-wider">Velvet AI Asistent</span>
+   <!-- ROZPRACOVANÝ & SKRÁŠLENÝ AI CHATBOT WIDGET -->
+<div class="fixed bottom-8 right-8 z-50 font-sans">
+    <!-- Tlačidlo chatu s efektom pri zotmení -->
+    <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-[#b0936d] transition-all duration-300 transform focus:outline-none border-2 border-white/80 group">
+        <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+    </button>
+
+    <!-- Okno chatu -->
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col transition-all duration-300 transform origin-bottom-right">
+        
+        <!-- Hlavička chatu -->
+        <div class="bg-velvetDark text-white p-4 flex justify-between items-center border-b border-white/10">
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full"></div>
+                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full absolute inset-0 animate-ping opacity-75"></div>
                 </div>
-                <button onclick="toggleChat()" class="text-gray-400 hover:text-white text-lg">&times;</button>
+                <div>
+                    <span class="font-serif text-sm font-bold tracking-wider block">Velvet AI Asistent</span>
+                    <span class="text-[10px] text-gray-300 tracking-widest uppercase">Online &bull; 24/7 k dispozícii</span>
+                </div>
             </div>
-            <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-[#F4EFE6]/50 text-velvetDark">
-                <div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">Dobrý deň! Sme tu pre vás na recepcii. S čím vám môžeme pomôcť?</div>
-            </div>
-            <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
-                <input type="text" id="chat-input" placeholder="Napíšte správu..." class="flex-1 bg-gray-100 border-none rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-velvetGold outline-none text-velvetDark" onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()" class="bg-velvetDark text-white px-4 py-2.5 rounded-xl text-xs uppercase font-semibold hover:bg-velvetGold transition">Odoslať</button>
+            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 text-xl">&times;</button>
+        </div>
+        
+        <!-- Telo správ -->
+        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-gradient-to-b from-[#F4EFE6]/40 to-white/60">
+            <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">
+                Dobrý deň! 👋 Som Dávid. Pýtajte sa ma na čokoľvek – izby, ceny, wellness alebo priame kontakty.
             </div>
         </div>
+
+        <!-- Vstupné pole -->
+        <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
+            <input type="text" id="chat-input" placeholder="Napíšte svoju otázku..." class="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-xs text-velvetDark focus:bg-white focus:ring-2 focus:ring-velvetGold focus:border-transparent outline-none transition" onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" class="bg-velvetDark text-white px-5 py-3 rounded-2xl text-xs uppercase font-semibold hover:bg-velvetGold transition shadow-md">Odoslať</button>
+        </div>
     </div>
-    <script>
-        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
-        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const container = document.getElementById('chat-messages');
-            const text = input.value.trim();
-            if (!text) return;
-            container.innerHTML += `<div class="bg-velvetDark text-white p-3 rounded-xl shadow-sm max-w-[85%] ml-auto text-right">${text}</div>`;
-            input.value = '';
+</div>
+
+<script>
+    function toggleChat() { 
+        document.getElementById('chat-window').classList.toggle('hidden'); 
+    }
+    function handleKeyPress(e) { 
+        if (e.key === 'Enter') sendMessage(); 
+    }
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const container = document.getElementById('chat-messages');
+        const text = input.value.trim();
+        if (!text) return;
+
+        // Správa od používateľa
+        container.innerHTML += `<div class="bg-velvetDark text-white p-3.5 rounded-2xl shadow-sm max-w-[85%] ml-auto text-right text-xs md:text-sm leading-relaxed">${text}</div>`;
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
+
+        // Inteligentná odpoveď s ohľadom na to, čo užívateľ hľadá
+        setTimeout(() => {
+            let reply = "V hoteli Velvet Nights vám radi pomôžeme so všetkým. Pre okamžitú rezerváciu alebo informácie nás kontaktujte na čísle +421 911 532 326.";
+            
+            const lower = text.toLowerCase();
+            if (lower.includes('cislo') || lower.includes('volat') || lower.includes('telefon') || lower.includes('kontakt')) {
+                reply = "📞 Naša recepcia je vám k dispozícii nonstop na telefonickom čísle **+421 911 532 326** alebo na e-maile info@velvetnights.sk.";
+            } else if (lower.includes('cena') || lower.includes('stoji') || lower.includes('kolko')) {
+                reply = "Ceny ubytovania sa líšia podľa vybraného termínu a typu izby/vilky. Zavolajte nám na +421 900 123 456 a radi vám pripravíme ponuku na mieru.";
+            } else if (lower.includes('wellness') || lower.includes('bazen') || lower.includes('sauna')) {
+                reply = "Vstupy do bazénov a sáun sú pre našich ubytovaných hostí plne zadarmo v rámci inclusive služieb (otvorené 9:00 – 21:00).";
+            }
+
+            container.innerHTML += `<div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">${reply}</div>`;
             container.scrollTop = container.scrollHeight;
-            setTimeout(() => {
-                let reply = "Recepcia hotela je dostupná na tel. čísle +421 900 123 456 alebo e-mailom info@velvetnights.sk.";
-                container.innerHTML += `<div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">${reply}</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 800);
-        }
-    </script>
+        }, 800);
+    }
+</script>
 </body>
 </html>
