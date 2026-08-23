@@ -33,29 +33,30 @@
 </head>
 <body class="bg-[#D8CEC4] text-velvetDark antialiased selection:bg-velvetGold selection:text-white">
 
-    <!-- HLAVNÉ MENU (NAVBAR) -->
+    <!-- HLAVNÉ MENU (NAVBAR) - OPRAVENÉ A PLNÉ FUNKČNÉ -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-8">
-                <button class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    <span>Menu</span>
-                </button>
+                <a href="index.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Domov</span>
+                </a>
                 <nav class="hidden md:flex space-x-6 text-xs uppercase tracking-widest text-white/80">
-                    <a href="#" class="hover:text-white transition">Informácie</a>
-                    <a href="#" class="hover:text-white transition">EN</a>
+                    <a href="pobyty.html" class="hover:text-white transition">Pobyty</a>
+                    <a href="wellness.html" class="hover:text-white transition">Wellness</a>
+                    <a href="gastronomia.html" class="hover:text-white transition">Gastronómia</a>
                 </nav>
             </div>
             
-            <!-- Logo -->
+            <!-- Logo smerujúce na index.html -->
             <div class="text-center">
-                <a href="#" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
+                <a href="index.html" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
                 <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
             </div>
 
             <div class="flex items-center space-x-4">
-                <a href="#rezervacia" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
-                    Rezervácia
+                <a href="kontakty.html" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
+                    Kontakt
                 </a>
             </div>
         </div>
@@ -72,8 +73,8 @@
         <!-- Rýchle odkazy dole -->
         <div class="absolute bottom-10 left-0 right-0 hidden md:flex justify-center space-x-12 text-white/80 text-xs uppercase tracking-widest border-t border-white/10 max-w-5xl mx-auto pt-6">
             <a href="#izby" class="hover:text-white transition flex items-center space-x-2"><span>Vyberte si ubytovanie</span></a>
-            <a href="#pobyty" class="hover:text-white transition flex items-center space-x-2"><span>Wellness pobyty</span></a>
-            <a href="#inclusive" class="hover:text-white transition flex items-center space-x-2"><span>Darčekové poukazy</span></a>
+            <a href="pobyty.html" class="hover:text-white transition flex items-center space-x-2"><span>Wellness pobyty</span></a>
+            <a href="kontakty.html" class="hover:text-white transition flex items-center space-x-2"><span>Darčekové poukazy</span></a>
         </div>
     </section>
 
@@ -87,7 +88,7 @@
         </div>
     </section>
 
-    <!-- 2. SEKCIA: IZBY (S veľkým pozadiovým nápisom) -->
+    <!-- 2. SEKCIA: IZBY -->
     <section id="izby" class="relative py-20 px-6 overflow-hidden bg-[#D8CEC4] border-t border-black/5">
         <div class="absolute left-1/2 -translate-x-1/2 top-10 font-serif text-[12vw] font-bold text-white/20 select-none pointer-events-none uppercase tracking-widest whitespace-nowrap">
             Izby
@@ -97,7 +98,7 @@
                 <div class="bg-white/95 backdrop-blur-md p-10 md:p-14 rounded-xl text-center max-w-lg shadow-2xl">
                     <h2 class="font-serif text-4xl mb-4 text-velvetDark">Izby</h2>
                     <p class="text-gray-600 mb-8 font-light leading-relaxed">Komfortne zariadené menšie ubytovanie pre váš dokonalý oddych.</p>
-                    <a href="#" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
+                    <a href="kontakty.html" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
                         Vyberte si
                     </a>
                 </div>
@@ -115,7 +116,7 @@
                 <div class="bg-white/95 backdrop-blur-md p-10 md:p-14 rounded-xl text-center max-w-lg shadow-2xl">
                     <h2 class="font-serif text-4xl mb-4 text-velvetDark">Apartmány</h2>
                     <p class="text-gray-600 mb-8 font-light leading-relaxed">Priestranné ubytovanie v apartmánoch so štýlovým zariadením.</p>
-                    <a href="#" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
+                    <a href="kontakty.html" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
                         Vyberte si
                     </a>
                 </div>
@@ -133,7 +134,7 @@
                 <div class="bg-white/95 backdrop-blur-md p-10 md:p-14 rounded-xl text-center max-w-lg shadow-2xl">
                     <h2 class="font-serif text-4xl mb-4 text-velvetDark">Vilky</h2>
                     <p class="text-gray-600 mb-8 font-light leading-relaxed">Patríte k hosťom, ktorí vyhľadávajú maximálne pohodlie a súkromie v tichom prostredí? Vyskúšajte pobyt vo vilkách.</p>
-                    <a href="#" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
+                    <a href="kontakty.html" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
                         Vyberte si
                     </a>
                 </div>
@@ -141,7 +142,7 @@
         </div>
     </section>
 
-    <!-- 5. SEKCIA: WELLNESS POBYTY (Prechod na tmavý blok) -->
+    <!-- 5. SEKCIA: WELLNESS POBYTY -->
     <section class="relative py-20 px-6 overflow-hidden bg-velvetDark text-white">
         <div class="absolute left-1/2 -translate-x-1/2 top-10 font-serif text-[9vw] font-bold text-white/5 select-none pointer-events-none uppercase tracking-widest whitespace-nowrap">
             Wellness pobyty
@@ -150,8 +151,8 @@
             <div class="bg-cover bg-center rounded-2xl shadow-2xl overflow-hidden min-h-[550px] flex items-center justify-center p-8" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1600');">
                 <div class="bg-white/95 text-velvetDark backdrop-blur-md p-10 md:p-14 rounded-xl text-center max-w-lg shadow-2xl">
                     <h2 class="font-serif text-4xl mb-4 text-velvetDark">Wellness pobyty</h2>
-                    <p class="text-gray-600 mb-8 font-light leading-relaxed">V jednom z najobľúbenejších wellness hotelov na Slovensku.</p>
-                    <a href="#" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
+                    <p class="text-gray-600 mb-8 font-light leading-relaxed">V jednom z najobľúbenejších wellness hotelov.</p>
+                    <a href="pobyty.html" class="inline-block border border-velvetDark text-velvetDark hover:bg-velvetDark hover:text-white transition px-8 py-3 text-xs uppercase tracking-widest font-semibold rounded-full">
                         Vyberte si
                     </a>
                 </div>
@@ -159,7 +160,7 @@
         </div>
     </section>
 
-    <!-- 6. INCLUSIVE SLUŽBY (Akordeón z Kaskád) -->
+    <!-- 6. INCLUSIVE SLUŽBY -->
     <section class="py-24 px-6 bg-[#211916] text-white">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
@@ -167,7 +168,6 @@
                 <p class="text-gray-400 font-light">V cene ubytovania ako naša pozornosť pre váš krásny pobyt</p>
             </div>
 
-            <!-- Akordeón položky -->
             <div class="space-y-4">
                 <details class="group border-b border-white/10 pb-4">
                     <summary class="flex justify-between items-center cursor-pointer py-4 font-serif text-xl text-gray-200 group-open:text-velvetGold transition">
@@ -204,60 +204,13 @@
         </div>
     </section>
 
-    <!-- 7. SEKCIA: PONUKA POBYTOV (Karty v štýle mriežky) -->
-    <section class="py-24 px-6 bg-white text-velvetDark">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="font-serif text-sm tracking-widest uppercase mb-4 text-gray-400">II &nbsp;&mdash;&nbsp; Výhodné ponuky</div>
-                <h2 class="font-serif text-4xl md:text-5xl text-velvetDark">Wellness pobyty za výhodnejšie ceny</h2>
-            </div>
-
-            <!-- Grid kariet pobytov -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Karta 1 -->
-                <div class="relative bg-cover bg-center rounded-2xl overflow-hidden min-h-[420px] flex flex-col justify-end p-8 text-white shadow-lg group" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000');">
-                    <div class="absolute top-6 left-6 text-xs uppercase tracking-widest bg-black/30 backdrop-blur-md px-3 py-1 rounded">Vyberte si termín pobytu</div>
-                    <h3 class="font-serif text-2xl md:text-3xl mb-2 group-hover:translate-y-[-4px] transition">Wellness & Spa zvýhodnený pobyt počas pracovného týždňa</h3>
-                    <p class="text-sm font-light text-gray-200 mb-6">od 212 € / osoba / 2 noci</p>
-                    <a href="#" class="self-start border border-white text-white hover:bg-white hover:text-velvetDark transition px-6 py-2.5 text-xs uppercase tracking-widest rounded-full">Viac</a>
-                </div>
-
-                <!-- Karta 2 -->
-                <div class="relative bg-cover bg-center rounded-2xl overflow-hidden min-h-[420px] flex flex-col justify-end p-8 text-white shadow-lg group" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&q=80&w=1000');">
-                    <div class="absolute top-6 left-6 text-xs uppercase tracking-widest bg-black/30 backdrop-blur-md px-3 py-1 rounded">28.06. &ndash; 30.08.2026</div>
-                    <h3 class="font-serif text-2xl md:text-3xl mb-2 group-hover:translate-y-[-4px] transition">Wellness & Spa leto od 2 nocí</h3>
-                    <p class="text-sm font-light text-gray-200 mb-6">od 296 € / osoba / 2 noci</p>
-                    <a href="#" class="self-start border border-white text-white hover:bg-white hover:text-velvetDark transition px-6 py-2.5 text-xs uppercase tracking-widest rounded-full">Viac</a>
-                </div>
-
-                <!-- Karta 3 -->
-                <div class="relative bg-cover bg-center rounded-2xl overflow-hidden min-h-[420px] flex flex-col justify-end p-8 text-white shadow-lg group" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&q=80&w=1000');">
-                    <div class="absolute top-6 left-6 text-xs uppercase tracking-widest bg-black/30 backdrop-blur-md px-3 py-1 rounded">Víkendový špeciál</div>
-                    <h3 class="font-serif text-2xl md:text-3xl mb-2 group-hover:translate-y-[-4px] transition">Víkendový Wellness & Spa pobyt</h3>
-                    <p class="text-sm font-light text-gray-200 mb-6">od 264 € / osoba / 2 noci</p>
-                    <a href="#" class="self-start border border-white text-white hover:bg-white hover:text-velvetDark transition px-6 py-2.5 text-xs uppercase tracking-widest rounded-full">Viac</a>
-                </div>
-
-                <!-- Karta 4 -->
-                <div class="relative bg-cover bg-center rounded-2xl overflow-hidden min-h-[420px] flex flex-col justify-end p-8 text-white shadow-lg group" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000');">
-                    <div class="absolute top-6 left-6 text-xs uppercase tracking-widest bg-black/30 backdrop-blur-md px-3 py-1 rounded">S nedeľným brunchom</div>
-                    <h3 class="font-serif text-2xl md:text-3xl mb-2 group-hover:translate-y-[-4px] transition">Víkendový pobyt s neskorým check-outom do 16:00</h3>
-                    <p class="text-sm font-light text-gray-200 mb-6">od 276 € / osoba / 2 noci</p>
-                    <a href="#" class="self-start border border-white text-white hover:bg-white hover:text-velvetDark transition px-6 py-2.5 text-xs uppercase tracking-widest rounded-full">Viac</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer id="rezervacia" class="bg-velvetDark text-white py-16 px-6 border-t border-white/10 text-center">
         <div class="max-w-4xl mx-auto">
             <h2 class="font-serif text-3xl mb-6">Pripravení na váš luxusný pobyt?</h2>
             <p class="text-gray-400 mb-8 max-w-lg mx-auto font-light">Rezervujte si svoj termín v hoteli Velvet Nights ešte dnes a zažite nezabudnuteľné chvíle oddychu.</p>
-            <a href="#" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">
-                Online Rezervácia
+            <a href="kontakty.html" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">
+                Kontaktovať recepciu
             </a>
             <div class="mt-16 text-xs text-gray-500 tracking-wider">
                 &copy; 2026 Velvet Nights. Všetky práva vyhradené.
@@ -266,4 +219,4 @@
     </footer>
 
 </body>
-</html>
+</html>S
