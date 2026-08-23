@@ -1,440 +1,112 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velvet Nights | Kalná nad Hronom - 5* Superior Hotel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-dark: #122018;
-            --accent-gold: #c5a059;
-            --accent-gold-hover: #d4af37;
-            --light-bg: #f9f8f6;
-            --text-main: #2c2c2c;
-            --text-light: #f4f4f4;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--primary-dark); color: var(--text-light); overflow-x: hidden; }
-        h1, h2, h3, .logo { font-family: 'Cinzel', serif; }
-
-        /* TOP BAR */
-        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(18, 32, 24, 0.95); font-size: 13px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
-        .top-bar a, .top-bar span { color: var(--text-light); text-decoration: none; margin-right: 20px; }
-
-        /* HEADER */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: var(--primary-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
-        .logo { font-size: 24px; letter-spacing: 3px; color: var(--text-light); cursor: pointer; user-select: none; }
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav button { background: none; border: none; color: var(--text-light); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: color 0.3s; }
-        nav button:hover, nav button.active { color: var(--accent-gold); }
-        .btn-reserve { background: var(--accent-gold); color: var(--primary-dark); padding: 10px 22px; text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 1px; transition: background 0.3s; border: none; cursor: pointer; }
-        .btn-reserve:hover { background: var(--accent-gold-hover); }
-
-        /* VIEWS (Stránky v jednom súbore) */
-        .page-view { display: none; }
-        .page-view.active-page { display: block; }
-
-        /* HERO / COMMON SECTIONS */
-        .hero { height: 80vh; background: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; }
-        .hero h2 { font-size: 14px; letter-spacing: 3px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 15px; }
-        .hero h1 { font-size: 48px; max-width: 800px; margin-bottom: 25px; line-height: 1.2; }
-        .badges { display: flex; gap: 15px; margin-bottom: 30px; cursor: pointer; user-select: none; }
-        .badge { background: rgba(18, 32, 24, 0.8); border: 1px solid var(--accent-gold); padding: 8px 16px; font-size: 12px; border-radius: 4px; color: var(--accent-gold); transition: transform 0.2s; }
-        .badge:hover { transform: scale(1.05); }
-        .btn-main { background: transparent; border: 2px solid var(--text-light); color: var(--text-light); padding: 12px 30px; text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; cursor: pointer; }
-        .btn-main:hover { background: var(--text-light); color: var(--primary-dark); }
-
-        /* LONG CONTENT BLOCKS */
-        .section { padding: 80px 10%; background: var(--light-bg); color: var(--text-main); border-bottom: 1px solid #e0e0e0; }
-        .section:nth-child(even) { background: #ffffff; }
-        .section h2 { font-size: 36px; color: var(--primary-dark); margin-bottom: 20px; text-align: center; }
-        .section p { text-align: center; max-width: 700px; margin: 0 auto 40px auto; color: #666; line-height: 1.6; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #fff; border: 1px solid #e0e0e0; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .card h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 20px; }
-        .card p { text-align: left; margin: 0; font-size: 14px; }
-
-        footer { background: #0a140f; color: #888; text-align: center; padding: 30px; font-size: 13px; border-top: 1px solid rgba(197, 160, 89, 0.1); }
-
-        /* SETTINGS MODAL (Logo x10) */
-        #settingsModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; }
-        .modal-content { background: #1a2b21; border: 1px solid var(--accent-gold); width: 85%; max-height: 85vh; border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; }
-        .modal-header { padding: 20px; background: #122018; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
-        .modal-body { padding: 30px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .setting-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
-        .setting-item label { display: block; font-size: 13px; margin-bottom: 8px; color: var(--accent-gold); font-weight: 600; }
-        .setting-item select { width: 100%; padding: 8px; background: #0f1a14; border: 1px solid #333; color: #fff; border-radius: 4px; }
-        .close-modal { background: var(--accent-gold); border: none; padding: 8px 16px; cursor: pointer; font-weight: bold; border-radius: 4px; }
-
-        /* ADS SCREEN (Ocenenia x10) */
-        #adsScreen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; }
-        .ad-banner { font-size: 32px; color: #ffcc00; text-align: center; animation: pulse 1.5s infinite; margin-bottom: 30px; font-family: 'Cinzel', serif; }
-        .exit-ads { position: absolute; top: 30px; right: 30px; background: #ff3333; color: white; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; border-radius: 4px; }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-    </style>
-</head>
-<body>
-
-    <div class="top-bar">
-        <div>
-            <span>+421 911 532 326</span>
-            <span>velvetnightskalna@gmail.com</span>
-        </div>
-        <div>
-            <a href="#">SK</a>
-            <a href="#">EUR (€)</a>
-        </div>
-    </div>
-
-    <!-- HLAVNÉ MENU S PREPÍNANÍM STRÁNOK -->
-    <header>
-        <div class="logo" id="secretLogo" title="Kliknite 10x pre nastavenia">VELVET NIGHTS</div>
-        <nav>
-            <ul>
-                <li><button onclick="switchPage('domov', this)" class="active">Domov</button></li>
-                <li><button onclick="switchPage('ohoteli', this)">O hoteli</button></li>
-                <li><button onclick="switchPage('izby', this)">Izby</button></li>
-                <li><button onclick="switchPage('wellness', this)">Wellness</button></li>
-                <li><button onclick="switchPage('gastronomia', this)">Gastronómia</button></li>
-                <li><button onclick="switchPage('okolie', this)">Okolie</button></li>
-                <li><button onclick="switchPage('kontakt', this)">Kontakt</button></li>
-            </ul>
-        </nav>
-        <button class="btn-reserve" onclick="switchPage('kontakt', document.querySelector('nav button:last-child'))">REZERVÁCIE</button>
-    </header>
-
-
-    <!-- ================= 1. DOMOV ================= -->
-    <div id="domov" class="page-view active-page">
-        <section class="hero">
-            <h2>2. Príroda & Butikový minimalizmus</h2>
-            <h1>Miesto, kam sa radi vraciate.</h1>
-            <div class="badges" id="secretAds" title="Kliknite 10x pre reklamný režim">
-                <div class="badge">🏆 NAJZAMESTNÁVATEĽ ROKA 2025</div>
-                <div class="badge">⭐ HVIEZDA HORECA 2024</div>
-            </div>
-            <button class="btn-main" onclick="switchPage('izby', document.querySelectorAll('nav button')[2])">Objaviť izby</button>
-        </section>
-        <section class="section">
-            <h2>Vitajte v rezorte Velvet Nights</h2>
-            <p>Zažite dokonalé spojenie nedotknutej prírody Podunajska a špičkového hotelového servisu päťhviezdicového štandardu Superior v Kalnej nad Hronom.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Exkluzívna lokalita</h3><p>Absolútne súkromie obklopené zeleňou s bezproblémovým prístupom a vlastným heliportom.</p></div>
-                <div class="card"><h3>Personalizovaný servis</h3><p>Váš osobný konciérž je pripravený splniť akékoľvek vaše želanie 24 hodín denne.</p></div>
-                <div class="card"><h3>Architektonický skvost</h3><p>Minimalistický dizajn prepojený s prírodnými materiálmi, drevom a kameňom.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Prečo si vybrať práve nás</h2>
-            <p>Garantujeme diskrétnosť, najvyššiu kvalitu služieb a nezabudnuteľné zážitky pre náročnú klientelu.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Bezpečnosť a súkromie</h3><p>Uzavretý privátny areál s moderným bezpečnostným systémom a stráženým parkovaním.</p></div>
-                <div class="card"><h3>Špičková gastronómia</h3><p>Reštaurácia vedená šéfkuchárom oceneným medzinárodnými prestížnymi hodnoteniami.</p></div>
-                <div class="card"><h3>Wellness procedúry</h3><p>Unikátne rituály a spa procedúry inšpirované tradíciou a modernými trendmi.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 2. O HOTELI ================= -->
-    <div id="ohoteli" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Tradícia a inovácia</h2>
-            <h1>Príbeh hotela Velvet Nights</h1>
-        </section>
-        <section class="section">
-            <h2>Naša filozofia</h2>
-            <p>Hotel Velvet Nights vznikol s víziou vytvoriť útočisko pokoja pre hostí, ktorí hľadajú dokonalý únik od zhonu každodenného života bez kompromisov v oblasti luxusu.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Udržateľnosť</h3><p>Využívame obnoviteľné zdroje energie a ekologické postupy šetrné k okolitej prírode.</p></div>
-                <div class="card"><h3>Dizajn a umenie</h3><p>Interiéry zdobia originálne diela súčasných stredoeurópskych umelcov.</p></div>
-                <div class="card"><h3>Filozofia hostinca</h3><p>Každý hosť je u nás vnímaný ako člen rodiny s individuálnym prístupom.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>História a zázemie</h2>
-            <p>Areál prešiel kompletnou rekonštrukciou a dnes spája historického ducha lokality s najmodernejšími technologickými štandardmi.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Areál 5 hektárov</h3><p>Rozsiahle súkromné záhrady, anglický trávnik a altánky na relax.</p></div>
-                <div class="card"><h3>Knihovňa a salónik</h3><p>Pokojné miesto s výberom vzácnych kníh a prémiových destilátov.</p></div>
-                <div class="card"><h3>Zákulisie hotela</h3><p>Tím zložený zo špičkových profesionálov s dlhoročnými skúsenosťami.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 3. IZBY ================= -->
-    <div id="izby" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Kráľovský spánok</h2>
-            <h1>Izby a luxusné apartmány</h1>
-        </section>
-        <section class="section">
-            <h2>Prehľad ubytovania</h2>
-            <p>Každá izba je jedinečne zariadená s dôrazom na maximálny komfort, kvalitné matrace a exkluzívnu kozmetiku.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Presidential Velvet Suite</h3><p>Najluxusnejší apartmán s rozlohou 220 m², privátnou saunou a obrovskou terasou.</p></div>
-                <div class="card"><h3>Superior Deluxe Room</h3><p>Priestranná izba s výhľadom do záhrady, king-size posteľou a mramorovou vaňou.</p></div>
-                <div class="card"><h3>Garden Pool Villa</h3><p>Samostatná vila s vlastným vyhrievaným bazénom a maximálnym súkromím.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Vybavenie každej izby</h2>
-            <p>Štandard, ktorý uspokojí aj tie najprísnejšie medzinárodné kritériá.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Smart ovládanie</h3><p>Ovládanie osvetlenia, teploty a závesov cez dotykový panel alebo hlas.</p></div>
-                <div class="card"><h3>Prémiový Minibar</h3><p>Bohatý výber špičkových vín, šampanského a bio pochutín.</p></div>
-                <div class="card"><h3>Bielizeň z bavlny</h3><p>Exkluzívna egyptská bavlna a menu vankúšov pre váš dokonalý spánok.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 4. WELLNESS ================= -->
-    <div id="wellness" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Harmonizácia tela i mysli</h2>
-            <h1>Velvet Spa & Wellness</h1>
-        </section>
-        <section class="section">
-            <h2>Saunový svet</h2>
-            <p>Uvoľnite svoje telo v našich tematických saunách a doprajte si profesionálne saunové rituály.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Fínska a Bio sauna</h3><p>Tradičné saunovanie s esenciami z liečivých bylín a celosvetovo uznávanými ceremoniálmi.</p></div>
-                <div class="card"><h3>Parná bylinková kabína</h3><p>Blahodarný vplyv na dýchacie cesty a regeneráciu pokožky v obklopení pary.</p></div>
-                <div class="card"><h3>Ochladzovacie jazierko</h3><p>Osvieženie po saunovaní s krištáľovo čistou horskou vodou.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Procedúry a masáže</h2>
-            <p>Zverte sa do rúk skúsených masérov a vyberte si z ponuky exotických aj klasických masáží.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Aromaterapeutické masáže</h3><p>Uvoľnenie svalového napätia pomocou čistých esenciálnych olejov.</p></div>
-                <div class="card"><h3>Privátne Spa Suite</h3><p>Zarezervujte si celú zónu iba pre seba s občerstvením a sektom.</p></div>
-                <div class="card"><h3>Himalájska jaskyňa</h3><p>Soľná terapia pre hlbokú relaxáciu a detoxikáciu organizmu.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 5. GASTRONÓMIA ================= -->
-    <div id="gastronomia" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Kulinárske umenie</h2>
-            <h1>Reštaurácia a Bar Velvet</h1>
-        </section>
-        <section class="section">
-            <h2>Fine Dining Reštaurácia</h2>
-            <p>Moderná gastronómia postavená na lokálnych sezónnych surovinách v novom prevedení šéfkuchára.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Degustačné menu</h3><p>9-chodový kulinársky zážitok spárovaný s exkluzívnymi výberovými vínami.</p></div>
-                <div class="card"><h3>Bio Raňajky</h3><p>Bohaté bufetové raňajky a jedlá pripravené à la carte podľa vašich predstáv.</p></div>
-                <div class="card"><h3>Súkromné stolovanie</h3><p>Možnosť večere v historickej vínnej pivnici pri sviečkach.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Skyline Cocktail Bar</h2>
-            <p>Miesto pre váš večerný oddych s originálnymi drinkami a atmosférou.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Autorské koktaily</h3><p>Drink creations namiešané našimi ocenenými barmanmi.</p></div>
-                <div class="card"><h3>Cigarový salónik</h3><p>Široký výber pravých kubánskych cigár a starých koňakov.</p></div>
-                <div class="card"><h3>Živá hudba</h3><p>Víkendové večery spríjemnené klavírnymi a jazzovými vystúpeniami.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 6. OKOLIE ================= -->
-    <div id="okolie" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Objavujte región</h2>
-            <h1>Zážitky v okolí Kalnej nad Hronom</h1>
-        </section>
-        <section class="section">
-            <h2>Tipy na výlety</h2>
-            <p>Región ponúka bohaté možnosti pre milovníkov histórie, prírody, turistiky aj vína.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Pohronský Inovec</h3><p>Turistické trasy a nádherné výhľady panenskej slovenskej prírody.</p></div>
-                <div class="card"><h3>Historické pamiatky</h3><p>Návšteva neďalekých zámkov, kaštieľov a múzeí v okolí Levíc.</p></div>
-                <div class="card"><h3>Vinárske cesty</h3><p>Degustácie vo vyhľadávaných rodinných vinohradoch s výkladom someliéra.</p></div>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Aktivity priamo v rezorte</h2>
-            <p>Nemusíte ani opustiť areál a zažijete deň plný aktívneho oddychu.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Tenisové kurty</h3><p>Profesionálny antukový kurt s možností trénera a zapožičania výbavy.</p></div>
-                <div class="card"><h3>Cyklistika</h3><p>Viacero prémiových elektrobicyklov k dispozícii pre našich ubytovaných hostí.</p></div>
-                <div class="card"><h3>Helipad transfer</h3><p>Rýchly presun vrtuľníkom na akékoľvek miesto na Slovensku či v EU.</p></div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ================= 7. KONTAKT ================= -->
-    <div id="kontakt" class="page-view">
-        <section class="hero" style="background-image: linear-gradient(rgba(18,32,24,0.4), rgba(18,32,24,0.7)), url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80')">
-            <h2>Sme tu pre vás</h2>
-            <h1>Rezervácie a kontaktné údaje</h1>
-        </section>
-        <section class="section">
-            <h2>Napíšte nám alebo rezervujte pobyt</h2>
-            <p>Vyplňte krátky formulár a náš rezervačný oddelenie vás bude okamžite kontaktovať.</p>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Kontaktné informácie</h3>
-                    <p><strong>Adresa:</strong> Kalná nad Hronom, Slovensko</p>
-                    <p><strong>Tel:</strong> +421 911 532 326</p>
-                    <p><strong>Email:</strong> velvetnightskalna@gmail.com</p>
-                </div>
-                <div class="card" style="grid-column: span 2;">
-                    <h3>Rýchla rezervácia</h3>
-                    <form onsubmit="event.preventDefault(); alert('Rezervácia bola úspešne odoslaná! Ďakujeme.');">
-                        <div style="margin-bottom: 15px;">
-                            <input type="text" placeholder="Vaše meno a priezvisko" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <input type="email" placeholder="Váš e-mail" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <select style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                                <option>Presidential Velvet Suite</option>
-                                <option>Superior Deluxe Room</option>
-                                <option>Garden Pool Villa</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-main" style="background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; width: 100%;">Odoslať dopyt</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-
-
-    <footer>
-        <p>&copy; 2026 Velvet Nights Kalná nad Hronom. Všetky práva vyhradené.</p>
-    </footer>
-
-
-    <!-- SETTINGS MODAL (40+ Nastavení cez Logo x10) -->
-    <div id="settingsModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Systémové nastavenia hotela (40+ parametrov)</h3>
-                <button class="close-modal" onclick="closeSettings()">Uložiť a zavrieť</button>
-            </div>
-            <div class="modal-body" id="settingsContainer"></div>
-        </div>
-    </div>
-
-
-    <!-- ADS SCREEN (Reklamný režim cez Ocenenia x10) -->
-    <div id="adsScreen">
-        <button class="exit-ads" onclick="closeAds()">Ukončiť reklamy</button>
-        <div class="ad-banner" id="adText">Načítavam reklamný obsah...</div>
-        <p style="color: #666; font-size: 12px;">Digitálna reklamná plocha hotela Velvet Nights.</p>
-    </div>
-
-
+    <title>Velvet Nights | Luxury Hotel & Spa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // --- PREPÍNANIE SAMOSTATNÝCH "STRÁNOK" V JEDNOM SÚBORE ---
-        function switchPage(pageId, btnElement) {
-            // Skryť všetky stránky
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active-page');
-            });
-            // Zobraziť požadovanú stránku
-            document.getElementById(pageId).classList.add('active-page');
-
-            // Aktualizovať aktívny stav v menu
-            document.querySelectorAll('nav button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if(btnElement) btnElement.classList.add('active');
-
-            // Posunúť okno hore
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // --- TAJNÉ KLIKANIE NA LOGO (Nastavenia 40+) ---
-        let logoClicks = 0;
-        const logo = document.getElementById('secretLogo');
-        const settingsModal = document.getElementById('settingsModal');
-
-        logo.addEventListener('click', () => {
-            logoClicks++;
-            if (logoClicks >= 10) {
-                logoClicks = 0;
-                openSettings();
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        velvetDark: '#2C221E',
+                        velvetBeige: '#D8CEC4',
+                        velvetLight: '#F4EFE6',
+                        velvetGold: '#C5A880',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
             }
-        });
-
-        function openSettings() {
-            settingsModal.style.display = 'flex';
-            loadSettingsFields();
-        }
-
-        function closeSettings() {
-            settingsModal.style.display = 'none';
-        }
-
-        function loadSettingsFields() {
-            const container = document.getElementById('settingsContainer');
-            if (container.children.length > 0) return;
-            const categories = ["Vizuál", "Hotel", "Rezervácie", "Marketing", "Bezpečnosť", "API", "Personalistika", "IoT"];
-            let html = "";
-            for (let i = 1; i <= 42; i++) {
-                let cat = categories[Math.floor((i - 1) / 6)];
-                html += `
-                    <div class="setting-item">
-                        <label>[${cat}] Parametre #${i}</label>
-                        <select>
-                            <option>Aktívne / Povolené</option>
-                            <option>Deaktivované</option>
-                            <option>Režim údržby</option>
-                        </select>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
-        }
-
-        // --- TAJNÉ KLIKANIE NA OCENENIA (Reklamný režim) ---
-        let adsClicks = 0;
-        const adsBadges = document.getElementById('secretAds');
-        const adsScreen = document.getElementById('adsScreen');
-        let adInterval;
-
-        adsBadges.addEventListener('click', () => {
-            adsClicks++;
-            if (adsClicks >= 10) {
-                adsClicks = 0;
-                startAdsMode();
-            }
-        });
-
-        function startAdsMode() {
-            adsScreen.style.display = 'flex';
-            const adsList = [
-                "📢 Reklama 1: Exkluzívny partnerský golfový rezort Piešťany",
-                "📢 Reklama 2: Súkromné tryskáče WingsAir - lety z Bratislavy",
-                "📢 Reklama 3: Šampanské Dom Pérignon - oficiálny partner",
-                "📢 Reklama 4: L'ORÉAL VIP Kozmetická línia pre izby"
-            ];
-            let index = 0;
-            document.getElementById('adText').innerText = adsList[0];
-            adInterval = setInterval(() => {
-                index = (index + 1) % adsList.length;
-                document.getElementById('adText').innerText = adsList[index];
-            }, 3000);
-        }
-
-        function closeAds() {
-            adsScreen.style.display = 'none';
-            clearInterval(adInterval);
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#2C221E] text-white antialiased selection:bg-velvetGold selection:text-white">
+
+    <!-- HLAVNÉ MENU (NAVBAR S PREPOJENIAMI NA VŠETKY PODSTRÁNKY) -->
+    <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <nav class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-semibold">
+                <a href="ubytovanie.html" class="hover:text-velvetGold transition">Ubytovanie</a>
+                <a href="pobyty.html" class="hover:text-velvetGold transition">Pobyty</a>
+                <a href="gastronomia.html" class="hover:text-velvetGold transition">Gastronómia</a>
+            </nav>
+            
+            <div class="text-center">
+                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] font-bold">VELVET NIGHTS</a>
+                <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-semibold">
+                <a href="wellness.html" class="hover:text-velvetGold transition">Wellness</a>
+                <a href="eventy.html" class="hover:text-velvetGold transition">Eventy</a>
+                <a href="kontakty.html" class="hover:text-velvetGold transition">Kontakty</a>
+            </nav>
+
+            <a href="pobyty.html" class="md:hidden bg-velvetGold text-white text-xs uppercase tracking-widest px-4 py-2 rounded-full">Menu</a>
+        </div>
+    </header>
+
+    <!-- HERO SEKCIA -->
+    <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 text-white pt-20">
+            <div class="font-serif text-xs md:text-sm tracking-[0.4em] uppercase mb-4 text-velvetGold">Vstúpte do sveta luxusu</div>
+            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Zažite dokonalý oddych</h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-300 mb-10">Prežite nezabudnuteľné chvíle v hoteli Velvet Nights s prémiovým ubytovaním, špičkovou gastronómiou a relaxom.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="pobyty.html" class="bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-8 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">Vybrať pobyt</a>
+                <a href="wellness.html" class="bg-white/10 hover:bg-white/20 border border-white/20 transition px-8 py-4 text-xs uppercase tracking-widest font-semibold rounded-full backdrop-blur-md">Objaviť wellness</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RÝCHLY PREHLED SEKCII (KARTY) -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold mb-2">Čo u nás nájdete</div>
+            <h2 class="font-serif text-4xl">Služby hotela Velvet Nights</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="ubytovanie.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&q=80&w=800');">
+                <div class="absolute bottom-0 left-0 p-8">
+                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Ubytovanie</h3>
+                    <p class="text-gray-300 text-sm font-light">Izby a apartmány pre váš maximálny komfort.</p>
+                </div>
+            </a>
+
+            <a href="gastronomia.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800');">
+                <div class="absolute bottom-0 left-0 p-8">
+                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Gastronómia</h3>
+                    <p class="text-gray-300 text-sm font-light">Reštaurácia, bar a výnimočné kulinárske zážitky.</p>
+                </div>
+            </a>
+
+            <a href="wellness.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800');">
+                <div class="absolute bottom-0 left-0 p-8">
+                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Wellness & Spa</h3>
+                    <p class="text-gray-300 text-sm font-light">Bazény, saunový svet a procedúry pre relax.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#211916] text-white py-16 px-6 border-t border-white/10 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-serif text-3xl mb-6">Naplánujte si svoju dovolenku</h2>
+            <p class="text-gray-400 mb-8 max-w-lg mx-auto font-light">Sme pripravení splniť každé vaše želanie. Kontaktujte nás alebo si pozrite ponuku pobytov.</p>
+            <a href="kontakty.html" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">Kontaktujte nás</a>
+            <div class="mt-16 text-xs text-gray-500 tracking-wider">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakty | Velvet Nights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        velvetDark: '#2C221E',
+                        velvetBeige: '#D8CEC4',
+                        velvetLight: '#F4EFE6',
+                        velvetGold: '#C5A880',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#F4EFE6] text-velvetDark antialiased selection:bg-velvetGold selection:text-white">
+
+    <!-- MENU -->
+    <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="ubytovanie.html" class="text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">&larr; Späť na web</a>
+            <div class="text-center">
+                <a href="index.html" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
+                <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
+            </div>
+            <div></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative h-[60vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 text-white pt-20">
+            <h1 class="font-serif text-5xl md:text-6xl font-normal mb-4 tracking-wide">Kontaktujte nás</h1>
+            <p class="text-lg font-light text-gray-200">Sme tu pre vás 24 hodín denne, 7 dní v týždni.</p>
+        </div>
+    </section>
+
+    <!-- OBSAH - INFO + FORMULÁR -->
+    <section class="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div class="space-y-8">
+            <div class="font-serif text-sm tracking-widest uppercase text-velvetGold font-semibold">Spojte sa s nami</div>
+            <h2 class="font-serif text-4xl text-velvetDark">Kde nás nájdete</h2>
+            <p class="text-gray-600 font-light leading-relaxed">Máte otázky ohľadom rezervácie, služieb alebo darčekových poukazov? Neváhajte nás kontaktovať telefonicky alebo e-mailom.</p>
+            
+            <div class="space-y-4 text-gray-700">
+                <p><strong>Adresa:</strong> Velvet Nights Resort, Hviezdoslavova 12, 010 01 Žilina</p>
+                <p><strong>Recepcia (24/7):</strong> +421 900 123 456</p>
+                <p><strong>E-mail:</strong> info@velvetnights.sk</p>
+            </div>
+        </div>
+
+        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl space-y-6">
+            <h3 class="font-serif text-2xl text-velvetDark">Napíšte nám správu</h3>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Vaše meno</label>
+                    <input type="text" class="w-full bg-[#F4EFE6] border border-transparent rounded-lg p-3 text-sm focus:border-velvetGold outline-none" placeholder="Ján Mrkvicka">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">E-mailová adresa</label>
+                    <input type="email" class="w-full bg-[#F4EFE6] border border-transparent rounded-lg p-3 text-sm focus:border-velvetGold outline-none" placeholder="jan@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Správa</label>
+                    <textarea rows="4" class="w-full bg-[#F4EFE6] border border-transparent rounded-lg p-3 text-sm focus:border-velvetGold outline-none" placeholder="Napíšte nám svoju požiadavku..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-velvetDark text-white hover:bg-velvetGold transition py-4 rounded-xl text-xs uppercase tracking-widest font-semibold">Odoslať správu</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-velvetDark text-white py-12 px-6 text-center border-t border-white/10">
+        <div class="text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</div>
+    </footer>
+</body>
+</html>

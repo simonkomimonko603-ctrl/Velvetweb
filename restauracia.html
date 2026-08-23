@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastronómia | Velvet Nights</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        velvetDark: '#2C221E',
+                        velvetBeige: '#D8CEC4',
+                        velvetLight: '#F4EFE6',
+                        velvetGold: '#C5A880',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#2C221E] text-white antialiased selection:bg-velvetGold selection:text-white">
+
+    <!-- HLAVNÉ MENU (NAVBAR) -->
+    <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="ubytovanie.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span>Späť na Ubytovanie</span>
+                </a>
+            </div>
+            
+            <!-- Logo -->
+            <div class="text-center">
+                <a href="#" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
+                <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="#rezervacia" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
+                    Stôl / Rezervácia
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. HERO SEKCIA -->
+    <section class="relative h-[80vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 text-white pt-20">
+            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Gastronómia</h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-300 leading-relaxed">
+                Kulinárske zážitky plné moderných chutí, tradičných receptúr a výberových vín v elegantnom prostredí.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. ÚVODNÝ PREZENTAČNÝ BLOK -->
+    <section class="py-24 px-6 text-center bg-[#F4EFE6] text-velvetDark">
+        <div class="max-w-3xl mx-auto">
+            <div class="font-serif text-sm tracking-widest uppercase mb-4 text-velvetGold">Umenie na tanieri</div>
+            <p class="font-serif text-2xl md:text-3xl leading-relaxed mb-6">
+                Naši šéfkuchári tvoria menu s dôrazom na čerstvosť, lokálne suroviny a sezónnosť. Každé jedlo je harmonickým spojením vizuálnej krásy a výnimočnej chuti.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. TROJ-STĹPCOVÁ MRIEŽKA (Reštaurácia, Bar, Terasa) -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Karta 1 -->
+            <div class="bg-[#352A26] rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/5">
+                <div>
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=800');"></div>
+                    <div class="p-8">
+                        <div class="text-xs uppercase tracking-widest text-velvetGold mb-2 font-semibold">Hlavná reštaurácia</div>
+                        <h3 class="font-serif text-2xl mb-4">Hotelová reštaurácia</h3>
+                        <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">Miesto, kde sa začínajú vaše rána bohatými raňajkami a končia večerami pri sviečkach a zážitkovom menu.</p>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 pt-0 text-xs text-gray-400 border-t border-white/10 pt-4 flex justify-between items-center">
+                    <span>Otvorené: 07:00 &ndash; 22:00</span>
+                    <span class="text-velvetGold font-semibold uppercase tracking-wider">Menu</span>
+                </div>
+            </div>
+
+            <!-- Karta 2 -->
+            <div class="bg-[#352A26] rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/5">
+                <div>
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800');"></div>
+                    <div class="p-8">
+                        <div class="text-xs uppercase tracking-widest text-velvetGold mb-2 font-semibold">Večerný oddych</div>
+                        <h3 class="font-serif text-2xl mb-4">Velvet Lobby Bar</h3>
+                        <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">Vychutnajte si majstorsky namiešané koktaily, výberové domáce dezerty a prémiové destiláty v príjemnej atmosfére.</p>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 pt-0 text-xs text-gray-400 border-t border-white/10 pt-4 flex justify-between items-center">
+                    <span>Otvorené: 10:00 &ndash; 24:00</span>
+                    <span class="text-velvetGold font-semibold uppercase tracking-wider">Nápojový lístok</span>
+                </div>
+            </div>
+
+            <!-- Karta 3 -->
+            <div class="bg-[#352A26] rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/5">
+                <div>
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&q=80&w=800');"></div>
+                    <div class="p-8">
+                        <div class="text-xs uppercase tracking-widest text-velvetGold mb-2 font-semibold">Letná sezóna</div>
+                        <h3 class="font-serif text-2xl mb-4">Panoramatická terasa</h3>
+                        <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">Posedenie na čerstvom vzduchu s výhľadom na okolité scenérie. Ideálne miesto na poobednú kávu alebo pohár vína.</p>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 pt-0 text-xs text-gray-400 border-t border-white/10 pt-4 flex justify-between items-center">
+                    <span>Podľa počasia</span>
+                    <span class="text-velvetGold font-semibold uppercase tracking-wider">Detail</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="rezervacia" class="bg-[#211916] text-white py-16 px-6 border-t border-white/10 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-serif text-3xl mb-6">Zarezervujte si stôl vo Velvet Nights</h2>
+            <p class="text-gray-400 mb-8 max-w-lg mx-auto font-light">Tešíme sa na vašu návštevu a na to, že vám prinesieme nezabudnuteľný gastronomický zážitok.</p>
+            <a href="tel:+421900000000" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">
+                Rezervovať stôl
+            </a>
+            <div class="mt-16 text-xs text-gray-500 tracking-wider">
+                &copy; 2026 Velvet Nights. Všetky práva vyhradené.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
