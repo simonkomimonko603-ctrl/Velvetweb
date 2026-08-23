@@ -29,84 +29,120 @@
         .font-serif { font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body class="bg-[#2C221E] text-white antialiased selection:bg-velvetGold selection:text-white">
+<body class="bg-velvetBeige text-velvetDark antialiased selection:bg-velvetGold selection:text-white relative">
 
-    <!-- HLAVNÉ MENU (NAVBAR S PREPOJENIAMI NA VŠETKY PODSTRÁNKY) -->
+    <!-- HLAVNÉ MENU -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <nav class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-semibold">
-                <a href="ubytovanie.html" class="hover:text-velvetGold transition">Ubytovanie</a>
-                <a href="pobyty.html" class="hover:text-velvetGold transition">Pobyty</a>
-                <a href="gastronomia.html" class="hover:text-velvetGold transition">Gastronómia</a>
-            </nav>
-            
+        <div class="max-w-7xl mx-auto grid grid-cols-3 items-center">
+            <div class="flex justify-start">
+                <a href="index.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Domov</span>
+                </a>
+            </div>
             <div class="text-center">
-                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] font-bold">VELVET NIGHTS</a>
+                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] text-white font-bold inline-block">VELVET NIGHTS</a>
                 <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
             </div>
-
-            <nav class="hidden md:flex items-center space-x-6 text-xs uppercase tracking-widest font-semibold">
-                <a href="wellness.html" class="hover:text-velvetGold transition">Wellness</a>
-                <a href="eventy.html" class="hover:text-velvetGold transition">Eventy</a>
-                <a href="kontakty.html" class="hover:text-velvetGold transition">Kontakty</a>
-            </nav>
-
-            <a href="pobyty.html" class="md:hidden bg-velvetGold text-white text-xs uppercase tracking-widest px-4 py-2 rounded-full">Menu</a>
+            <div class="flex justify-end">
+                <a href="kontakty.html" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
+                    Kontakt
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- HERO SEKCIA -->
-    <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000');">
-        <div class="max-w-4xl mx-auto px-6 text-white pt-20">
-            <div class="font-serif text-xs md:text-sm tracking-[0.4em] uppercase mb-4 text-velvetGold">Vstúpte do sveta luxusu</div>
-            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Zažite dokonalý oddych</h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-300 mb-10">Prežite nezabudnuteľné chvíle v hoteli Velvet Nights s prémiovým ubytovaním, špičkovou gastronómiou a relaxom.</p>
+    <!-- HERO -->
+    <section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 text-white">
+            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Vitajte v novom svete oddychu</h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200 mb-10">Objavte luxusný hotel a wellness rezort pre váš dokonalý únik od reality.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="pobyty.html" class="bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-8 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">Vybrať pobyt</a>
-                <a href="wellness.html" class="bg-white/10 hover:bg-white/20 border border-white/20 transition px-8 py-4 text-xs uppercase tracking-widest font-semibold rounded-full backdrop-blur-md">Objaviť wellness</a>
+                <a href="ubytovanie.html" class="bg-velvetGold text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-white hover:text-velvetDark transition">Pozrieť ubytovanie</a>
+                <a href="pobyty.html" class="border border-white/40 text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-white/10 transition">Naše pobyty</a>
             </div>
         </div>
     </section>
 
-    <!-- RÝCHLY PREHLED SEKCII (KARTY) -->
+    <!-- ROZCESTNÍK SEKCÍ -->
     <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold mb-2">Čo u nás nájdete</div>
-            <h2 class="font-serif text-4xl">Služby hotela Velvet Nights</h2>
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl mb-4">Zážitky v Velvet Nights</h2>
+            <p class="text-gray-600 font-light">Vyberte si oblasť, ktorú chcete u nás prežiť</p>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="ubytovanie.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&q=80&w=800');">
-                <div class="absolute bottom-0 left-0 p-8">
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Ubytovanie</h3>
-                    <p class="text-gray-300 text-sm font-light">Izby a apartmány pre váš maximálny komfort.</p>
+            <a href="ubytovanie.html" class="group relative h-96 rounded-2xl overflow-hidden shadow-xl block">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="font-serif text-2xl mb-2">Ubytovanie</h3>
+                    <p class="text-xs tracking-wider text-gray-300 uppercase">Izby, apartmány a vilky</p>
                 </div>
             </a>
-
-            <a href="gastronomia.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800');">
-                <div class="absolute bottom-0 left-0 p-8">
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Gastronómia</h3>
-                    <p class="text-gray-300 text-sm font-light">Reštaurácia, bar a výnimočné kulinárske zážitky.</p>
+            <a href="wellness.html" class="group relative h-96 rounded-2xl overflow-hidden shadow-xl block">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="font-serif text-2xl mb-2">Wellness & Spa</h3>
+                    <p class="text-xs tracking-wider text-gray-300 uppercase">Bazény, sauny, procedúry</p>
                 </div>
             </a>
-
-            <a href="wellness.html" class="group relative h-[400px] rounded-2xl overflow-hidden shadow-2xl block bg-cover bg-center transition transform hover:-translate-y-1" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800');">
-                <div class="absolute bottom-0 left-0 p-8">
-                    <h3 class="font-serif text-2xl mb-2 group-hover:text-velvetGold transition">Wellness & Spa</h3>
-                    <p class="text-gray-300 text-sm font-light">Bazény, saunový svet a procedúry pre relax.</p>
+            <a href="gastronomia.html" class="group relative h-96 rounded-2xl overflow-hidden shadow-xl block">
+                <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="font-serif text-2xl mb-2">Gastronómia</h3>
+                    <p class="text-xs tracking-wider text-gray-300 uppercase">Reštaurácia a bary</p>
                 </div>
             </a>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#211916] text-white py-16 px-6 border-t border-white/10 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-serif text-3xl mb-6">Naplánujte si svoju dovolenku</h2>
-            <p class="text-gray-400 mb-8 max-w-lg mx-auto font-light">Sme pripravení splniť každé vaše želanie. Kontaktujte nás alebo si pozrite ponuku pobytov.</p>
-            <a href="kontakty.html" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">Kontaktujte nás</a>
-            <div class="mt-16 text-xs text-gray-500 tracking-wider">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</div>
-        </div>
+    <footer class="bg-velvetDark text-white py-16 px-6 text-center border-t border-white/10">
+        <p class="text-gray-400 text-sm mb-4">Hotel Velvet Nights | Luxusný oddych na dosah</p>
+        <p class="text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</p>
     </footer>
+
+    <!-- AI CHATBOT WIDGET -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition transform focus:outline-none border-2 border-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col transition-all">
+            <div class="bg-velvetDark text-white p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="font-serif text-sm font-semibold tracking-wider">Velvet AI Asistent</span>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white text-lg">&times;</button>
+            </div>
+            <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-[#F4EFE6]/50 text-velvetDark">
+                <div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">Dobrý deň! Som virtuálna inteligencia hotela Velvet Nights. Pýtajte sa ma na izby, ceny, wellness alebo služby hotela, rád vám poradím!</div>
+            </div>
+            <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
+                <input type="text" id="chat-input" placeholder="Napíšte správu..." class="flex-1 bg-gray-100 border-none rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-velvetGold outline-none text-velvetDark" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-velvetDark text-white px-4 py-2.5 rounded-xl text-xs uppercase font-semibold hover:bg-velvetGold transition">Odoslať</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+            container.innerHTML += `<div class="bg-velvetDark text-white p-3 rounded-xl shadow-sm max-w-[85%] ml-auto text-right">${text}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            setTimeout(() => {
+                let reply = "Ďakujem za otázku. V hoteli Velvet Nights ponúkame ubytovanie, špičkové wellness a vynikajúcu gastronómiu. Pre rezerváciu nás kontaktujte.";
+                const lower = text.toLowerCase();
+                if (lower.includes('cena') || lower.includes('stoji')) reply = "Ceny pobytov závisia od zvoleného termínu a izby. Napíšte nám cez kontaktný formulár.";
+                if (lower.includes('wellness') || lower.includes('bazen')) reply = "Wellness svet je pre ubytovaných hostí plne k dispozícii.";
+                container.innerHTML += `<div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+    </script>
 </body>
 </html>

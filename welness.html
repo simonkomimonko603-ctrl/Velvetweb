@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellness & Spa | Velvet Nights</title>
-    <!-- Tailwind CSS -->
+    <title>Wellness | Velvet Nights</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,7 +14,6 @@
                         velvetBeige: '#D8CEC4',
                         velvetLight: '#F4EFE6',
                         velvetGold: '#C5A880',
-                        velvetBlue: '#1A2930',
                     },
                     fontFamily: {
                         serif: ['Playfair Display', 'serif'],
@@ -25,107 +23,89 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body class="bg-[#F4EFE6] text-velvetDark antialiased selection:bg-velvetGold selection:text-white">
+<body class="bg-velvetBeige text-velvetDark antialiased selection:bg-velvetGold selection:text-white relative">
 
-    <!-- HLAVNÉ MENU (NAVBAR) -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-8">
-                <a href="ubytovanie.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    <span>Späť na Ubytovanie</span>
+        <div class="max-w-7xl mx-auto grid grid-cols-3 items-center">
+            <div class="flex justify-start">
+                <a href="index.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Domov</span>
                 </a>
             </div>
-            
-            <!-- Logo -->
             <div class="text-center">
-                <a href="#" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
+                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] text-white font-bold inline-block">VELVET NIGHTS</a>
                 <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
             </div>
-
-            <div class="flex items-center space-x-4">
-                <a href="#rezervacia" class="bg-white/10 hover:bg-white/25 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
-                    Vstup / Rezervácia
+            <div class="flex justify-end">
+                <a href="kontakty.html" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
+                    Kontakt
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- 1. HERO SEKCIA -->
-    <section class="relative h-[85vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=2000');">
+    <section class="relative h-[80vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=2000');">
         <div class="max-w-4xl mx-auto px-6 text-white pt-20">
             <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Wellness & Spa</h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200 leading-relaxed">
-                Vstúpte do oázy pokoja, kde sa snúbi sila vody, teplo sáun a uvoľňujúca atmosféra pre vaše telo i myseľ.
-            </p>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200">Zabudnite na starosti v bazénovom a saunovom svete.</p>
         </div>
     </section>
 
-    <!-- 2. ÚVODNÝ TEXT -->
-    <section class="py-24 px-6 text-center bg-[#F4EFE6]">
-        <div class="max-w-3xl mx-auto">
-            <div class="font-serif text-sm tracking-widest uppercase mb-4 text-velvetGold font-semibold">Harmónia a oddych</div>
-            <p class="font-serif text-2xl md:text-3xl text-velvetDark leading-relaxed">
-                Náš wellness svet je navrhnutý tak, aby vám poskytol dokonalý únik od každodenného zhonu. Doprajte si regeneráciu pod dohľadom odborníkov.
-            </p>
-        </div>
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="font-serif text-4xl mb-6">Oáza pokoja a relaxu</h2>
+        <p class="text-gray-700 font-light leading-relaxed mb-8">Ponúkame širokú škálu sáun (fínska, parná, infra), vírivky, relaxačné zóny a profesionálne masáže, ktoré uvoľnia vaše telo aj myseľ.</p>
     </section>
 
-    <!-- 3. SEKCIA - 2 VEĽKÉ BLOKY (Bazény / Sauny) -->
-    <section class="py-16 px-6 max-w-7xl mx-auto space-y-16">
-        
-        <!-- Bazénový svet -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-2xl items-center">
-            <div class="h-[400px] lg:h-full min-h-[400px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&q=80&w=1000');"></div>
-            <div class="p-10 lg:p-16 space-y-6">
-                <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold">Vodný raj</div>
-                <h2 class="font-serif text-3xl md:text-4xl text-velvetDark">Bazénový svet</h2>
-                <p class="text-gray-600 font-light leading-relaxed">Nerezové bazény s čistou vodou, masážnymi tryskami, protiprúdom a relaxačnými lehátkami s výhľadom do zelene.</p>
-                <ul class="space-y-2 text-sm text-gray-700 font-light">
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Veľký relaxačný bazén</span></li>
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Whirlpool s hydromasážou</span></li>
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Detský bazén pre najmenších</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Saunový svet -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-2xl items-center">
-            <div class="p-10 lg:p-16 space-y-6 order-2 lg:order-1">
-                <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold">Teplo a detox</div>
-                <h2 class="font-serif text-3xl md:text-4xl text-velvetDark">Saunový svet</h2>
-                <p class="text-gray-600 font-light leading-relaxed">Očistite svoju myseľ a telo v našich exkluzívnych saunách. Pripravili sme pre vás pravidelné saunové rituály.</p>
-                <ul class="space-y-2 text-sm text-gray-700 font-light">
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Fínska saunová ceremónia</span></li>
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Parná aromaterapia</span></li>
-                    <li class="flex items-center space-x-2"><span class="w-1.5 h-1.5 bg-velvetGold rounded-full"></span><span>Infrasauna a ochladzovací bazén</span></li>
-                </ul>
-            </div>
-            <div class="h-[400px] lg:h-full min-h-[400px] bg-cover bg-center order-1 lg:order-2" style="background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000');"></div>
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="rezervacia" class="bg-velvetDark text-white py-16 px-6 border-t border-white/10 text-center mt-24">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-serif text-3xl mb-6">Doprajte si dokonalý relax vo Velvet Nights</h2>
-            <p class="text-gray-400 mb-8 max-w-lg mx-auto font-light">Zarezervujte si svoj pobyt alebo wellness vstup ešte dnes.</p>
-            <a href="ubytovanie.html" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg">
-                Prejsť na ubytovanie a pobyty
-            </a>
-            <div class="mt-16 text-xs text-gray-500 tracking-wider">
-                &copy; 2026 Velvet Nights. Všetky práva vyhradené.
-            </div>
-        </div>
+    <footer class="bg-velvetDark text-white py-16 px-6 text-center border-t border-white/10">
+        <p class="text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</p>
     </footer>
 
+    <!-- AI CHATBOT WIDGET -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition transform focus:outline-none border-2 border-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col transition-all">
+            <div class="bg-velvetDark text-white p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="font-serif text-sm font-semibold tracking-wider">Velvet AI Asistent</span>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white text-lg">&times;</button>
+            </div>
+            <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-[#F4EFE6]/50 text-velvetDark">
+                <div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">Dobrý deň! Pýtajte sa ma na naše wellness služby, sauny alebo masáže.</div>
+            </div>
+            <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
+                <input type="text" id="chat-input" placeholder="Napíšte správu..." class="flex-1 bg-gray-100 border-none rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-velvetGold outline-none text-velvetDark" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-velvetDark text-white px-4 py-2.5 rounded-xl text-xs uppercase font-semibold hover:bg-velvetGold transition">Odoslať</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+            container.innerHTML += `<div class="bg-velvetDark text-white p-3 rounded-xl shadow-sm max-w-[85%] ml-auto text-right">${text}</div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+            setTimeout(() => {
+                let reply = "Wellness svet je otvorený denne od 9:00 do 21:00 pre všetkých ubytovaných hostí.";
+                container.innerHTML += `<div class="bg-white p-3 rounded-xl shadow-sm max-w-[85%] text-velvetDark">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+    </script>
 </body>
 </html>
