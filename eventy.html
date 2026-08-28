@@ -1,19 +1,22 @@
-<!DOCTYPE html>
+
+html_content = '''<!DOCTYPE html>
 <html lang="sk" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventy & Svadby | Velvet Nights</title>
+    <title>Eventy, Párty & Gala | Velvet Nights Luxury Hotel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        velvetDark: '#2C221E',
+                        velvetDark: '#1A1210',
                         velvetBeige: '#D8CEC4',
                         velvetLight: '#F4EFE6',
                         velvetGold: '#C5A880',
+                        velvetDisco: '#E0A96D',
+                        velvetPurple: '#2A1B2E',
                     },
                     fontFamily: {
                         serif: ['Playfair Display', 'serif'],
@@ -27,135 +30,220 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        .disco-gradient { background: linear-gradient(135deg, #1A1210 0%, #2A1B2E 50%, #1A1210 100%); }
     </style>
 </head>
-<body class="bg-[#F4EFE6] text-velvetDark antialiased selection:bg-velvetGold selection:text-white">
+<body class="bg-velvetDark text-white antialiased selection:bg-velvetGold selection:text-white relative">
 
-    <!-- MENU -->
+    <!-- HLAVNÉ MENU -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="ubytovanie.html" class="text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">&larr; Späť na web</a>
-            <div class="text-center">
-                <a href="index.html" class="font-serif text-2xl tracking-[0.25em] text-white font-bold">VELVET NIGHTS</a>
-                <div class="text-[10px] tracking-[0.3em] text-white/60 uppercase">Luxury Hotel & Spa</div>
+        <div class="max-w-7xl mx-auto grid grid-cols-3 items-center">
+            <div class="flex justify-start space-x-6">
+                <a href="index.html" class="flex items-center space-x-2 text-white uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    <span>Domov</span>
+                </a>
+                <a href="restauracia.html" class="hidden md:inline-block text-white/80 uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    Reštaurácia
+                </a>
             </div>
-            <a href="#dopyt" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">Nezáväzný dopyt</a>
+            <div class="text-center">
+                <a href="index.html" class="font-serif text-2xl md:text-3xl tracking-[0.25em] text-white font-bold inline-block">VELVET NIGHTS</a>
+                <div class="text-[10px] tracking-[0.3em] text-velvetGold uppercase">Luxury Hotel & Events</div>
+            </div>
+            <div class="flex justify-end space-x-6">
+                <a href="restauracia.html" class="md:hidden text-white/80 uppercase tracking-widest text-xs font-semibold hover:text-velvetGold transition">
+                    Gastro
+                </a>
+                <a href="kontakty.html" class="bg-white/10 hover:bg-white/20 text-white text-xs uppercase tracking-widest px-5 py-2.5 rounded-full backdrop-blur-md transition border border-white/20">
+                    Kontakt
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- HERO -->
-    <section class="relative h-[80vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000');">
-        <div class="max-w-4xl mx-auto px-6 text-white pt-20">
-            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Eventy & Svadby</h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200">Uspořiadajte nezabudnuteľnú svadbu, rodinnú oslavu či firemnú konferenciu v exkluzívnych priestoroch.</p>
+    <!-- HERO SEKCIA - PARTY & DISCO LUXURY -->
+    <section class="relative h-[90vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(26,18,16,0.6), rgba(42,27,46,0.85)), url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 pt-20">
+            <span class="text-velvetGold uppercase tracking-[0.3em] text-xs font-semibold mb-4 block">Nočný život & exkluzívne podujatia</span>
+            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Párty, Gala & Velvet Disco Nights</h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-300 mb-8">Zažite nezabudnuteľné eventy, súkromné oslavy a štýlové hudobné noci pod taktovkou špičkových DJs a svetelných show.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#program" class="bg-velvetGold text-velvetDark px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-white transition">Najbližšie eventy</a>
+            </div>
         </div>
     </section>
 
-    <!-- OBSAH -->
-    <section class="py-24 px-6 max-w-7xl mx-auto space-y-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="h-[400px] rounded-2xl bg-cover bg-center shadow-xl" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=1000');"></div>
-            <div class="space-y-6">
-                <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold">Váš veľký deň</div>
-                <h2 class="font-serif text-4xl text-velvetDark">Svadby snov</h2>
-                <p class="text-gray-600 font-light leading-relaxed">Poskytujeme kompletný servis na kľúč &ndash; od výzdoby, cez prvotriedne svadobné menu až po ubytovanie pre novomanželov a svadobčanov v luxusných izbách.</p>
-            </div>
+    <!-- UVODNY MANIFEST -->
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-3 block">Scéna pre váš zážitok</span>
+        <h2 class="font-serif text-3xl md:text-5xl mb-8 leading-tight">Kde sa luxus stretáva s pulzujúcou energiou</h2>
+        <p class="text-gray-300 font-light leading-relaxed text-lg mb-6">
+            Hotel Velvet Nights nie je len miestom na oddych, ale aj centrom spoločenského diania. Naše priestory prešli špeciálnou úpravou pre organizovanie prvotriednych súkromných večierkov, tematických disko nocí, svadobných hostín a VIP gala eventov.
+        </p>
+        <p class="text-gray-400 font-light leading-relaxed">
+            Špičkové ozvučenie, dizajnové osvetlenie, koktailový bar s majstrami mixológie a nezopakomovateľná atmosféra zaručia, že každý event bude legendárny.
+        </p>
+    </section>
+
+    <!-- SEKCIA: NAJBLIŽŠIE PARTY & EVENTY -->
+    <section id="program" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-3 block">Kalendár podujatí</span>
+            <h3 class="font-serif text-4xl md:text-5xl mb-4">Nadchádzajúce Velvet Noci</h3>
+            <p class="text-gray-400 font-light max-w-xl mx-auto">Rezervujte si svoje miesto na exkluzívne tematické noci tohto mesiaca.</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 order-2 lg:order-1">
-                <div class="text-xs uppercase tracking-widest text-velvetGold font-semibold">Biznis a inovácie</div>
-                <h2 class="font-serif text-4xl text-velvetDark">Konferencie & Meetingy</h2>
-                <p class="text-gray-600 font-light leading-relaxed">Moderná technika, flexibilné priestory s denným svetlom a profesionálny catering sú zárukou úspechu vašich firemných podujatí.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Event 1 -->
+            <div class="disco-gradient p-8 rounded-3xl shadow-2xl flex flex-col justify-between border border-white/10 hover:border-velvetGold/50 transition">
+                <div>
+                    <div class="text-xs font-semibold text-velvetGold uppercase tracking-widest mb-2">Sobota &bull; 12. Marec 2026</div>
+                    <h4 class="font-serif text-2xl mb-4 text-white">Velvet Studio 54 Disco</h4>
+                    <p class="text-gray-300 font-light text-sm leading-relaxed mb-6">Návrat do éry zlata, flitrov a groovu. Hráme najlepšie disco hity 70. a 80. rokov v modernom luxusnom houseovom remixe.</p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+                    <span class="text-gray-400">Dress code: Glamour & Shiny</span>
+                    <span class="text-velvetGold font-bold uppercase tracking-wider">Vstup VIP</span>
+                </div>
             </div>
-            <div class="h-[400px] rounded-2xl bg-cover bg-center shadow-xl order-1 lg:order-2" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1000');"></div>
+
+            <!-- Event 2 -->
+            <div class="disco-gradient p-8 rounded-3xl shadow-2xl flex flex-col justify-between border border-white/10 hover:border-velvetGold/50 transition">
+                <div>
+                    <div class="text-xs font-semibold text-velvetGold uppercase tracking-widest mb-2">Piatok &bull; 25. Marec 2026</div>
+                    <h4 class="font-serif text-2xl mb-4 text-white">Deep Velvet Lounge & Sax</h4>
+                    <p class="text-gray-300 font-light text-sm leading-relaxed mb-6">Spojenie hlbokých elektronických rytmov naživo doprevádzaných profesionálnym saxofonistom. Ideálny večer pre milovníkov dobrého drinku.</p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+                    <span class="text-gray-400">Dress code: Smart Casual</span>
+                    <span class="text-velvetGold font-bold uppercase tracking-wider">Voľný vstup</span>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="disco-gradient p-8 rounded-3xl shadow-2xl flex flex-col justify-between border border-white/10 hover:border-velvetGold/50 transition">
+                <div>
+                    <div class="text-xs font-semibold text-velvetGold uppercase tracking-widest mb-2">Sobota &bull; 9. Apríl 2026</div>
+                    <h4 class="font-serif text-2xl mb-4 text-white">Chardonnay & Beats Gala</h4>
+                    <p class="text-gray-300 font-light text-sm leading-relaxed mb-6">Exkluzívna ochutnávka ročníkových vín spojená s večernou noblesnou párty a vystúpením svetelných tanečníkov.</p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
+                    <span class="text-gray-400">Dress code: Black Tie</span>
+                    <span class="text-velvetGold font-bold uppercase tracking-wider">Len s rezerváciou</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCIA: SÚKROMNÉ OSLAVY A SVATBY -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-[#251916] p-8 md:p-12 rounded-3xl border border-white/10">
+            <div>
+                <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-2 block">Súkromný prenájom</span>
+                <h3 class="font-serif text-3xl md:text-4xl mb-6 text-white">Usporiadajte svoju párty u nás</h3>
+                <p class="text-gray-300 font-light leading-relaxed mb-6">
+                    Hľadáte ideálny priestor na narodeninovú oslavu, rozlúčku so slobodou, firemný event alebo svadbu, ktorá sa pretiahne do skorých ranných hodín? Poskytneme vám kompletný servis vrátane cateringu, obsluhy a DJ setu na mieru.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-300 font-light mb-8">
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Kapacita až do 150 hostí v štýlových priestoroch</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Možnosť uzavretej spoločnosti bez obmedzenia nočného kľudu</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Profesionálny barmanský tím a miešané koktaily na želanie</span>
+                    </li>
+                </ul>
+                <a href="kontakty.html" class="inline-block bg-velvetGold text-velvetDark px-8 py-3.5 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-white transition">Nezáväzne dopytovať event</a>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-2xl h-[400px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1000');"></div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="dopyt" class="bg-velvetDark text-white py-16 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="font-serif text-3xl mb-6">Máte záujem o usporiadanie eventu?</h2>
-            <p class="text-gray-400 mb-8 font-light">Napíšte nám vaše predstavy a náš event manažér vás bude kontaktovať.</p>
-            <a href="kontakty.html" class="inline-block bg-velvetGold text-white hover:bg-white hover:text-velvetDark transition px-10 py-4 text-xs uppercase tracking-widest font-semibold rounded-full">Kontaktovať event oddelenie</a>
-            <div class="mt-16 text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</div>
-        </div>
+    <footer class="bg-black text-white py-16 px-6 text-center border-t border-white/10 mt-16">
+        <p class="text-gray-400 text-sm mb-4">Hotel Velvet Nights | Luxus, hudba a nezabudnuteľné noci</p>
+        <p class="text-xs text-gray-600">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</p>
     </footer>
-<!-- ROZPRACOVANÝ & SKRÁŠLENÝ AI CHATBOT WIDGET -->
-<div class="fixed bottom-8 right-8 z-50 font-sans">
-    <!-- Tlačidlo chatu s efektom pri zotmení -->
-    <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-[#b0936d] transition-all duration-300 transform focus:outline-none border-2 border-white/80 group">
-        <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-    </button>
 
-    <!-- Okno chatu -->
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col transition-all duration-300 transform origin-bottom-right">
-        
-        <!-- Hlavička chatu -->
-        <div class="bg-velvetDark text-white p-4 flex justify-between items-center border-b border-white/10">
-            <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full"></div>
-                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full absolute inset-0 animate-ping opacity-75"></div>
+    <!-- INTELIGENTNÝ AI CHATBOT -->
+    <div class="fixed bottom-8 right-8 z-50 font-sans">
+        <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-velvetDark w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-white transition-all duration-300 transform focus:outline-none border-2 border-white/80 group">
+            <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
+
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-[#1A1210]/95 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 overflow-hidden flex flex-col text-white transition-all duration-300 transform origin-bottom-right">
+            <div class="bg-black/80 p-4 flex justify-between items-center border-b border-white/10">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-3.5 h-3.5 bg-velvetGold rounded-full"></div>
+                        <div class="w-3.5 h-3.5 bg-velvetGold rounded-full absolute inset-0 animate-ping opacity-75"></div>
+                    </div>
+                    <div>
+                        <span class="font-serif text-sm font-bold tracking-wider block">Velvet Event AI</span>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">Párty & Disco Asistent</span>
+                    </div>
                 </div>
-                <div>
-                    <span class="font-serif text-sm font-bold tracking-wider block">Velvet AI Asistent</span>
-                    <span class="text-[10px] text-gray-300 tracking-widest uppercase">Online &bull; 24/7 k dispozícii</span>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 text-xl">&times;</button>
+            </div>
+            
+            <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-gradient-to-b from-black/40 to-[#1A1210]">
+                <div class="bg-white/10 p-3.5 rounded-2xl shadow-sm border border-white/10 max-w-[85%] text-gray-200 text-xs md:text-sm leading-relaxed">
+                    Nazdar! 🪩 Sledujem disko a eventovú sekciu. Pýtajte sa ma na najbližšie párty, program, dress code alebo súkromný prenájom!
                 </div>
             </div>
-            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 text-xl">&times;</button>
-        </div>
-        
-        <!-- Telo správ -->
-        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-gradient-to-b from-[#F4EFE6]/40 to-white/60">
-            <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">
-                Dobrý deň! 👋 Som Dávid. Pýtajte sa ma na čokoľvek – izby, ceny, wellness alebo priame kontakty.
-            </div>
-        </div>
 
-        <!-- Vstupné pole -->
-        <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
-            <input type="text" id="chat-input" placeholder="Napíšte svoju otázku..." class="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-xs text-velvetDark focus:bg-white focus:ring-2 focus:ring-velvetGold focus:border-transparent outline-none transition" onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()" class="bg-velvetDark text-white px-5 py-3 rounded-2xl text-xs uppercase font-semibold hover:bg-velvetGold transition shadow-md">Odoslať</button>
+            <div class="p-3 bg-black/80 border-t border-white/10 flex items-center space-x-2">
+                <input type="text" id="chat-input" placeholder="Opýtajte sa na akcie..." class="flex-1 bg-white/10 border border-white/20 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-400 focus:bg-white/20 focus:ring-2 focus:ring-velvetGold focus:border-transparent outline-none transition" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-velvetGold text-velvetDark px-5 py-3 rounded-2xl text-xs uppercase font-bold hover:bg-white transition shadow-md">Odoslať</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function toggleChat() { 
-        document.getElementById('chat-window').classList.toggle('hidden'); 
-    }
-    function handleKeyPress(e) { 
-        if (e.key === 'Enter') sendMessage(); 
-    }
-    function sendMessage() {
-        const input = document.getElementById('chat-input');
-        const container = document.getElementById('chat-messages');
-        const text = input.value.trim();
-        if (!text) return;
+    <script>
+        function toggleChat() { 
+            document.getElementById('chat-window').classList.toggle('hidden'); 
+        }
+        function handleKeyPress(e) { 
+            if (e.key === 'Enter') sendMessage(); 
+        }
 
-        // Správa od používateľa
-        container.innerHTML += `<div class="bg-velvetDark text-white p-3.5 rounded-2xl shadow-sm max-w-[85%] ml-auto text-right text-xs md:text-sm leading-relaxed">${text}</div>`;
-        input.value = '';
-        container.scrollTop = container.scrollHeight;
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
 
-        // Inteligentná odpoveď s ohľadom na to, čo užívateľ hľadá
-        setTimeout(() => {
-            let reply = "V hoteli Velvet Nights vám radi pomôžeme so všetkým. Pre okamžitú rezerváciu alebo informácie nás kontaktujte na čísle +421 911 532 326.";
-            
-            const lower = text.toLowerCase();
-            if (lower.includes('cislo') || lower.includes('volat') || lower.includes('telefon') || lower.includes('kontakt')) {
-                reply = "📞 Naša recepcia je vám k dispozícii nonstop na telefonickom čísle **+421 911 532 326** alebo na e-maile info@velvetnights.sk.";
-            } else if (lower.includes('cena') || lower.includes('stoji') || lower.includes('kolko')) {
-                reply = "Ceny ubytovania sa líšia podľa vybraného termínu a typu izby/vilky. Zavolajte nám na +421 900 123 456 a radi vám pripravíme ponuku na mieru.";
-            } else if (lower.includes('wellness') || lower.includes('bazen') || lower.includes('sauna')) {
-                reply = "Vstupy do bazénov a sáun sú pre našich ubytovaných hostí plne zadarmo v rámci inclusive služieb (otvorené 9:00 – 21:00).";
-            }
-
-            container.innerHTML += `<div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">${reply}</div>`;
+            container.innerHTML += `<div class="bg-velvetGold text-velvetDark p-3.5 rounded-2xl shadow-sm max-w-[85%] ml-auto text-right text-xs md:text-sm font-semibold leading-relaxed">${text}</div>`;
+            input.value = '';
             container.scrollTop = container.scrollHeight;
-        }, 800);
-    }
-</script>
+
+            setTimeout(() => {
+                const lowerQuery = text.toLowerCase();
+                let reply = "Radi vám pomôžeme s eventmi! Pre rezerváciu stola alebo uzavretú spoločnosť volajte recepciu na +421 900 123 456.";
+
+                if (lowerQuery.includes('party') || lowerQuery.includes('disko') || lowerQuery.includes('disco') || lowerQuery.includes('akcia') || lowerQuery.includes('program')) {
+                    reply = "Najbližšie akcie: 12.3. Velvet Studio 54 Disco, 25.3. Deep Velvet Lounge & Sax a 9.4. Chardonnay & Beats Gala!";
+                } else if (lowerQuery.includes('dress code') || lowerQuery.includes('oblecenie')) {
+                    reply = "Dress code závisí od eventu – od Glamour & Shiny na disko noci až po Black Tie na gala večery.";
+                } else if (lowerQuery.includes('prenajom') || lowerQuery.includes('oslava') || lowerQuery.includes('svadba')) {
+                    reply = "Ponúkame súkromný prenájom priestorov s kapacitou do 150 hostí vrátane cateringu a DJ servisu.";
+                }
+
+                container.innerHTML += `<div class="bg-white/10 p-3.5 rounded-2xl shadow-sm border border-white/10 max-w-[85%] text-gray-200 text-xs md:text-sm leading-relaxed">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+    </script>
 </body>
 </html>
+'''
+
+with open('eventy.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("eventy.html successfully created.")
