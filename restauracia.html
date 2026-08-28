@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+# Code to generate the updated gastronomia.html page with an extremely long, rich, and luxurious layout.
+html_content = '''<!DOCTYPE html>
 <html lang="sk" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gastronómia | Velvet Nights</title>
+    <title>Gastronómia & Reštaurácia | Velvet Nights Luxury Hotel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,6 +15,7 @@
                         velvetBeige: '#D8CEC4',
                         velvetLight: '#F4EFE6',
                         velvetGold: '#C5A880',
+                        velvetSand: '#EBE3D5',
                     },
                     fontFamily: {
                         serif: ['Playfair Display', 'serif'],
@@ -31,6 +33,7 @@
 </head>
 <body class="bg-velvetBeige text-velvetDark antialiased selection:bg-velvetGold selection:text-white relative">
 
+    <!-- HLAVNÉ MENU -->
     <header class="absolute top-0 left-0 right-0 z-50 px-6 py-6 border-b border-white/10">
         <div class="max-w-7xl mx-auto grid grid-cols-3 items-center">
             <div class="flex justify-start">
@@ -51,98 +54,239 @@
         </div>
     </header>
 
-    <section class="relative h-[80vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80&w=2000');">
+    <!-- HERO SEKCIA -->
+    <section class="relative h-[85vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2000');">
         <div class="max-w-4xl mx-auto px-6 text-white pt-20">
-            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Gastronómia</h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200">Zážitková reštaurácia a exkluzívne bary s výberovými vínami.</p>
+            <span class="text-velvetGold uppercase tracking-[0.3em] text-xs font-semibold mb-4 block">Zážitková gastronómia</span>
+            <h1 class="font-serif text-5xl md:text-7xl font-normal mb-6 tracking-wide">Reštaurácia & Bary</h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto text-gray-200 mb-8">Objavte kulinárske majstrovstvá pod vedením šéfkuchára, kde sa lokálne suroviny menia na nezabudnuteľné umenie.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#menu" class="bg-velvetGold text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-white hover:text-velvetDark transition">Pozrieť menu & zážitky</a>
+            </div>
         </div>
     </section>
 
+    <!-- UVODNY MANIFEST -->
     <section class="py-24 px-6 max-w-4xl mx-auto text-center">
-        <h2 class="font-serif text-4xl mb-6">Chutě, ktoré si zamilujete</h2>
-        <p class="text-gray-700 font-light leading-relaxed mb-8">Náš šéfkuchár pripravuje jedinečné kulinárske špeciality z čerstvých a lokálnych surovín. Vychutnajte si večeru v elegantnom prostredí reštaurácie.</p>
+        <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-3 block">Kulinárska filozofia</span>
+        <h2 class="font-serif text-3xl md:text-5xl mb-8 leading-tight">Vášeň pre autetické chute</h2>
+        <p class="text-gray-700 font-light leading-relaxed text-lg mb-6">
+            V reštaurácii Velvet Nights veríme, že jedlo je emócia. Spájame moderné svetové kulinárske trendy s tradičnými receptúrami našich predkov, pričom 90% surovín odoberáme od lokálnych farmárov a certifikovaných malovýrobcov.
+        </p>
+        <p class="text-gray-600 font-light leading-relaxed">
+            Každý tanier je starostlivo premyslenou kompozíciou chutí, vôní a vizuálnej dokonalosti, doplnenou o špičkový výber vín z domácich aj svetových viníc.
+        </p>
     </section>
 
+    <!-- SEKCIA 1: HLAVNÁ REŠTAURÁCIA -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="rounded-3xl overflow-hidden shadow-2xl h-[450px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1000');"></div>
+            <div>
+                <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-2 block">Fine Dining</span>
+                <h3 class="font-serif text-3xl md:text-4xl mb-6">Hlavná reštaurácia Velvet</h3>
+                <p class="text-gray-700 font-light leading-relaxed mb-6">
+                    Priestor, kde elegancia stretáva útulnú atmosféru. Naša reštaurácia ponúka raňajkové formy bufetu s obrovským výberom čerstvých štiav, domácich pečív a teplých jedál na objednávku, ako aj večerné zážitkové menu o 5 a 7 chodoch.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 font-light">
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Bohaté raňajky formou gurmánskych bufetov (07:00 – 10:30)</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Sezónne à la carte menu obmieňané 4-krát ročne</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Možnosť výberu vegetariánskych, vegánskych a bezgluténových alternatív</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCIA 2: VINIČNÁ KAVIAREŇ A WINE BAR -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-2 block">Someliérsky výber</span>
+                <h3 class="font-serif text-3xl md:text-4xl mb-6">Velvet Wine Bar & Someliérske pivnice</h3>
+                <p class="text-gray-700 font-light leading-relaxed mb-6">
+                    Naša historická tehlová pivnica ukrýva viac ako 400 druhov exkluzívnych vín z celého sveta s dôrazom na slovenské a rakúske rodinné vinárstva. Pod vedením nášho hlavného someliéra organizujeme pravidelné riadené degustácie.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 font-light">
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Archívne vína a limitované edície od popredných vinárov</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Večerné riadené degustácie spojené s výberom farmárskych syrov</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <span class="w-2 h-2 bg-velvetGold rounded-full"></span>
+                        <span>Profesionálny pairing vína k degustačnému menu</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="order-1 md:order-2 rounded-3xl overflow-hidden shadow-2xl h-[450px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=1000');"></div>
+        </div>
+    </section>
+
+    <!-- SEKCIA 3: UKÁŽKA MENU -->
+    <section id="menu" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-xs uppercase tracking-[0.25em] text-velvetGold font-bold mb-3 block">Chuťové skvosty</span>
+            <h2 class="font-serif text-4xl md:text-5xl mb-4">Výber z nášho aktuálneho menu</h2>
+            <p class="text-gray-600 font-light max-w-xl mx-auto">Ochutnajte to najlepšie, čo naša kuchyňa v tejto sezóne ponúka.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-between border border-gray-100">
+                <div>
+                    <h4 class="font-serif text-2xl mb-3 text-velvetDark">Jelení chrbát v bylinkovej kruste</h4>
+                    <p class="text-xs text-velvetGold uppercase tracking-widest font-semibold mb-4">Hlavné jedlo</p>
+                    <p class="text-gray-600 font-light text-sm leading-relaxed mb-6">Podávané s pyré z pečeného paštrnáka, čučoriedkovým demi-glace s lesnými hubami a domácim zemiakovým knedlíkom.</p>
+                </div>
+                <div class="text-sm font-semibold text-velvetDark pt-4 border-t border-gray-100">Cena: 32 €</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-between border border-gray-100">
+                <div>
+                    <h4 class="font-serif text-2xl mb-3 text-velvetDark">Grilovaný filet z lososa</h4>
+                    <p class="text-xs text-velvetGold uppercase tracking-widest font-semibold mb-4">Hlavné jedlo</p>
+                    <p class="text-gray-600 font-light text-sm leading-relaxed mb-6">S bylinkovým rizotom z aborio ryže, šafranovou penou a chrumkavou cuketou julienne.</p>
+                </div>
+                <div class="text-sm font-semibold text-velvetDark pt-4 border-t border-gray-100">Cena: 28 €</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col justify-between border border-gray-100">
+                <div>
+                    <h4 class="font-serif text-2xl mb-3 text-velvetDark">Čokoládová tortička Velvet</h4>
+                    <p class="text-xs text-velvetGold uppercase tracking-widest font-semibold mb-4">Dezert</p>
+                    <p class="text-gray-600 font-light text-sm leading-relaxed mb-6">Z belgickej čokolády Valrhona (70%), s malinovým coulis, čerstvou mätou a domácou vanilkovou zmrzlinou.</p>
+                </div>
+                <div class="text-sm font-semibold text-velvetDark pt-4 border-t border-gray-100">Cena: 12 €</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRAKTICKÉ INFORMÁCIE PRE HOSTÍ -->
+    <section class="py-16 px-6 max-w-5xl mx-auto bg-white/60 backdrop-blur-md rounded-3xl mb-24 p-10 shadow-lg border border-white">
+        <h3 class="font-serif text-3xl mb-6 text-center">Dôležité informácie o reštaurácii</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-700 font-light">
+            <div>
+                <h5 class="font-semibold text-velvetDark mb-2 text-base">Otváracie hodiny</h5>
+                <p class="mb-4">Reštaurácia Velvet je otvorená denne od **07:00 do 23:00 hod.** Kuchyňa prijíma objednávky do 22:00.</p>
+                <h5 class="font-semibold text-velvetDark mb-2 text-base">Dress code</h5>
+                <p>Počas večerných hodín (od 18:00) odporúčame elegantný ležérny štýl (smart casual).</p>
+            </div>
+            <div>
+                <h5 class="font-semibold text-velvetDark mb-2 text-base">Rezervácia stola</h5>
+                <p class="mb-4">Pre zabezpečenie najlepšieho miesta pri okne alebo na terase odporúčame rezervovať stôl vopred online alebo na recepcii.</p>
+                <h5 class="font-semibold text-velvetDark mb-2 text-base">Súkromné akcie</h5>
+                <p>Ponúkame aj možnosť usporiadania rodinných osláv, svadieb či firemných večerí v našom salóniku.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="bg-velvetDark text-white py-16 px-6 text-center border-t border-white/10">
+        <p class="text-gray-400 text-sm mb-4">Hotel Velvet Nights | Luxusný oddych na dosah</p>
         <p class="text-xs text-gray-500">&copy; 2026 Velvet Nights. Všetky práva vyhradené.</p>
     </footer>
 
-    <!-- ROZPRACOVANÝ & SKRÁŠLENÝ AI CHATBOT WIDGET -->
-<div class="fixed bottom-8 right-8 z-50 font-sans">
-    <!-- Tlačidlo chatu s efektom pri zotmení -->
-    <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-[#b0936d] transition-all duration-300 transform focus:outline-none border-2 border-white/80 group">
-        <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-    </button>
+    <!-- INTELIGENTNÝ AI CHATBOT PREHVIADAJÚCI WEB -->
+    <div class="fixed bottom-8 right-8 z-50 font-sans">
+        <button id="chat-toggle" onclick="toggleChat()" class="bg-velvetGold text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-[#b0936d] transition-all duration-300 transform focus:outline-none border-2 border-white/80 group">
+            <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
 
-    <!-- Okno chatu -->
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col transition-all duration-300 transform origin-bottom-right">
-        
-        <!-- Hlavička chatu -->
-        <div class="bg-velvetDark text-white p-4 flex justify-between items-center border-b border-white/10">
-            <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full"></div>
-                    <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full absolute inset-0 animate-ping opacity-75"></div>
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col transition-all duration-300 transform origin-bottom-right">
+            <div class="bg-velvetDark text-white p-4 flex justify-between items-center border-b border-white/10">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full"></div>
+                        <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full absolute inset-0 animate-ping opacity-75"></div>
+                    </div>
+                    <div>
+                        <span class="font-serif text-sm font-bold tracking-wider block">Velvet AI Asistent</span>
+                        <span class="text-[10px] text-gray-300 tracking-widest uppercase">Analyzuje gastronómiu &bull; 24/7</span>
+                    </div>
                 </div>
-                <div>
-                    <span class="font-serif text-sm font-bold tracking-wider block">Velvet AI Asistent</span>
-                    <span class="text-[10px] text-gray-300 tracking-widest uppercase">Online &bull; 24/7 k dispozícii</span>
+                <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 text-xl">&times;</button>
+            </div>
+            
+            <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-gradient-to-b from-[#F4EFE6]/40 to-white/60">
+                <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">
+                    Dobrý deň! 👋 Sledujem túto stránku o gastronómii. Pýtajte sa ma na reštauráciu, menu, vína alebo otváracie hodiny!
                 </div>
             </div>
-            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 text-xl">&times;</button>
-        </div>
-        
-        <!-- Telo správ -->
-        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm bg-gradient-to-b from-[#F4EFE6]/40 to-white/60">
-            <div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">
-                Dobrý deň! 👋 Som Dávid. Pýtajte sa ma na čokoľvek – izby, ceny, wellness alebo priame kontakty.
-            </div>
-        </div>
 
-        <!-- Vstupné pole -->
-        <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
-            <input type="text" id="chat-input" placeholder="Napíšte svoju otázku..." class="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-xs text-velvetDark focus:bg-white focus:ring-2 focus:ring-velvetGold focus:border-transparent outline-none transition" onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()" class="bg-velvetDark text-white px-5 py-3 rounded-2xl text-xs uppercase font-semibold hover:bg-velvetGold transition shadow-md">Odoslať</button>
+            <div class="p-3 bg-white border-t border-gray-100 flex items-center space-x-2">
+                <input type="text" id="chat-input" placeholder="Opýtajte sa na gastronómiu..." class="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-xs text-velvetDark focus:bg-white focus:ring-2 focus:ring-velvetGold focus:border-transparent outline-none transition" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-velvetDark text-white px-5 py-3 rounded-2xl text-xs uppercase font-semibold hover:bg-velvetGold transition shadow-md">Odoslať</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function toggleChat() { 
-        document.getElementById('chat-window').classList.toggle('hidden'); 
-    }
-    function handleKeyPress(e) { 
-        if (e.key === 'Enter') sendMessage(); 
-    }
-    function sendMessage() {
-        const input = document.getElementById('chat-input');
-        const container = document.getElementById('chat-messages');
-        const text = input.value.trim();
-        if (!text) return;
+    <script>
+        function toggleChat() { 
+            document.getElementById('chat-window').classList.toggle('hidden'); 
+        }
+        function handleKeyPress(e) { 
+            if (e.key === 'Enter') sendMessage(); 
+        }
 
-        // Správa od používateľa
-        container.innerHTML += `<div class="bg-velvetDark text-white p-3.5 rounded-2xl shadow-sm max-w-[85%] ml-auto text-right text-xs md:text-sm leading-relaxed">${text}</div>`;
-        input.value = '';
-        container.scrollTop = container.scrollHeight;
+        function scanWebPageContent() {
+            let textSegments = [];
+            const elements = document.querySelectorAll('h1, h2, h3, p, span, li');
+            elements.forEach(el => {
+                let t = el.innerText.trim();
+                if (t.length > 5 && !textSegments.includes(t)) {
+                    textSegments.push(t);
+                }
+            });
+            return textSegments.join(' ');
+        }
 
-        // Inteligentná odpoveď s ohľadom na to, čo užívateľ hľadá
-        setTimeout(() => {
-            let reply = "V hoteli Velvet Nights vám radi pomôžeme so všetkým. Pre okamžitú rezerváciu alebo informácie nás kontaktujte na čísle +421 911 532 326.";
-            
-            const lower = text.toLowerCase();
-            if (lower.includes('cislo') || lower.includes('volat') || lower.includes('telefon') || lower.includes('kontakt')) {
-                reply = "📞 Naša recepcia je vám k dispozícii nonstop na telefonickom čísle **+421 911 532 326** alebo na e-maile info@velvetnights.sk.";
-            } else if (lower.includes('cena') || lower.includes('stoji') || lower.includes('kolko')) {
-                reply = "Ceny ubytovania sa líšia podľa vybraného termínu a typu izby/vilky. Zavolajte nám na +421 900 123 456 a radi vám pripravíme ponuku na mieru.";
-            } else if (lower.includes('wellness') || lower.includes('bazen') || lower.includes('sauna')) {
-                reply = "Vstupy do bazénov a sáun sú pre našich ubytovaných hostí plne zadarmo v rámci inclusive služieb (otvorené 9:00 – 21:00).";
-            }
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
 
-            container.innerHTML += `<div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">${reply}</div>`;
+            container.innerHTML += `<div class="bg-velvetDark text-white p-3.5 rounded-2xl shadow-sm max-w-[85%] ml-auto text-right text-xs md:text-sm leading-relaxed">${text}</div>`;
+            input.value = '';
             container.scrollTop = container.scrollHeight;
-        }, 800);
-    }
-</script>
-</body>
 
+            setTimeout(() => {
+                const pageText = scanWebPageContent().toLowerCase();
+                const lowerQuery = text.toLowerCase();
+                let reply = "Na tejto stránke o gastronómii vám radi pomôžeme. Pre rezerváciu stola volajte recepciu na +421 900 123 456.";
+
+                if (lowerQuery.includes('cislo') || lowerQuery.includes('volat') || lowerQuery.includes('telefon') || lowerQuery.includes('kontakt')) {
+                    reply = "📞 Naša recepcia je dostupná na tel. čísle **+421 900 123 456** alebo info@velvetnights.sk.";
+                } else if (lowerQuery.includes('menu') || lowerQuery.includes('jedlo') || lowerQuery.includes('obed') || lowerQuery.includes('vecera')) {
+                    reply = "Z ponuky reštaurácie: Ponúkame jelení chrbát (32 €), grilovaného lososa (28 €) a čokoládový dezert Velvet (12 €). Raňajky sú formou bufetu od 07:00 do 10:30.";
+                } else if (lowerQuery.includes('vino') || lowerQuery.includes('pivnica') || lowerQuery.includes('bar')) {
+                    reply = "Na webe sa píše: Velvet Wine Bar ukrýva viac ako 400 druhov exkluzívnych vín a ponúka riadené degustácie s someliérom.";
+                } else if (lowerQuery.includes('hodiny') || lowerQuery.includes('cas') || lowerQuery.includes('kedy')) {
+                    reply = "Reštaurácia je otvorená denne od 07:00 do 23:00 (kuchyňa varí do 22:00).";
+                } else {
+                    if (pageText.includes(lowerQuery)) {
+                        reply = "Našiel som to priamo v texte tejto gastrostránky! Pre rezerváciu stola volajte +421 900 123 456.";
+                    }
+                }
+
+                container.innerHTML += `<div class="bg-white p-3.5 rounded-2xl shadow-sm border border-gray-100 max-w-[85%] text-velvetDark text-xs md:text-sm leading-relaxed">${reply}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 800);
+        }
+    </script>
+</body>
 </html>
+'''
+
+with open('gastronomia.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("gastronomia.html successfully updated.")
